@@ -10,7 +10,7 @@
     {{ $tweets->title }}
   </h5>
   <p class="text-base md:text-xl text-gray-500 font-sm">
-    {{ $tweets->user->about }}
+    {!! $tweets->body !!}
     {{-- <a href="" target="_blank"
       class="text-indigo-900 hover:text-indigo-600 font-bold border-b-0 hover:border-b-4 hover:border-b-indigo-300 transition-all mb-2">
       XYZ

@@ -32,10 +32,11 @@
           onerror="this.style.display='none'"
         />
       </div>
-      <p class="text-sm text-gray-500 mt-3"> {{ $user->name }} </p>
+      {{-- <p class="text-sm text-gray-500 mt-3"> {{ $user->name }} </p> --}}
+      <p class="text-sm text-gray-500 mt-3"> User Profile </p>
       <h1 class="text-2xl sm:text-3xl font-semibold mt-1 tracking-tight text-gray-900"> {{ $user->name }} </h1>
       <div class="flex flex-wrap justify-center sm:justify-center gap-2 mt-2 text-gray-500 text-sm font-medium">
-        <span>Isekai</span>
+        {{-- <span>Isekai</span> --}}
         <span class="mx-1">&bull;</span>
         <span>Joined {{ $user->created_at->diffForHumans() }}</span>
       </div>
@@ -77,13 +78,13 @@
 
       <!-- Information items grid -->
       <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-4 text-gray-600 text-sm">
-        <div class="flex items-center gap-3">
+        {{-- <div class="flex items-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linejoin="round" stroke-linecap="round" d="M12 2a10 10 0 11-7.016 17.017L4 22l4.984-1.016A10 10 0 0112 2z" />
           </svg>
           <dt class="font-medium text-gray-700">Website</dt>
           <dd class="ml-auto">sylica.eu.org</dd>
-        </div>
+        </div> --}}
 
         <div class="flex items-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -93,13 +94,13 @@
           <dd class="ml-auto truncate max-w-xs sm:max-w-none">{{ $user->email }}</dd>
         </div>
 
-        <div class="flex items-center gap-3">
+        {{-- <div class="flex items-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linejoin="round" stroke-linecap="round" d="M3 10l6 6-4 4m9-18v12m0 0l-4-4m4 4l4-4" />
           </svg>
           <dt class="font-medium text-gray-700">Phone</dt>
           <dd class="ml-auto whitespace-nowrap">+00 000 000 00 00</dd>
-        </div>
+        </div> --}}
 
         <div class="flex items-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
