@@ -11,6 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-4">
+                {{-- edit user data --}}
                 <h1>Edit User Data</h1>
     <form action="{{ route('user.update', $users->id) }}" method="POST">
         @csrf
