@@ -1,4 +1,5 @@
                 <div class="flex p-4 border-b border-b-gray-400">
+                    <a href="{{ route('viewtweet', $tweet->id) }}">
                     <div class="mr-2 flex-shrink-0">
                         <img src="{{ $tweet->user->avatar }}"
                         alt=""
@@ -7,11 +8,10 @@
                     </div>
 
                     <div>
-                        <a href="{{ route('viewtweet', $tweet->id) }}">
                             <h5 class="font-bold mb-4">{{ $tweet->user->name }}</h5>
+                            <p class="text-sm"><b>{{ $tweet->title }}</b></p>
+                            <span class="text-sm text-gray-500">{{ $tweet->created_at->diffForHumans() }}</span>
                         </a>
-                        <p class="text-sm"><b>{{ $tweet->title }}</b></p>
-                        <span class="text-sm text-gray-500">{{ $tweet->created_at->diffForHumans() }}</span>
 
                         {{-- <p class="text-sm">{{ $tweet->body }}</p> --}}
 
