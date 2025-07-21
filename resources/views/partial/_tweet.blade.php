@@ -1,17 +1,21 @@
                 <div class="flex p-4 border-b border-b-gray-400">
-                    <a href="{{ route('viewtweet', $tweet->id) }}">
+                    <a href="{{ route('profile') }}">
                     <div class="mr-2 flex-shrink-0">
                         <img src="{{ $tweet->user->avatar }}"
                         alt=""
                         class="rounded-full mr-2"
                         >
                     </div>
+                    </a>
 
                     <div>
+                            <a href="{{ route('profile') }}">
                             <h5 class="font-bold mb-4">{{ $tweet->user->name }}</h5>
+
+                            <a href="{{ route('viewtweet', $tweet->id) }}">
                             <p class="text-sm"><b>{{ $tweet->title }}</b></p>
                             <span class="text-sm text-gray-500">{{ $tweet->created_at->diffForHumans() }}</span>
-                        </a>
+                            </a>
 
                         {{-- <p class="text-sm">{{ $tweet->body }}</p> --}}
 

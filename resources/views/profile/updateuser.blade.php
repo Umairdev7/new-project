@@ -16,11 +16,6 @@
     <form action="{{ route('user.update', $users->id) }}" method="POST">
         @csrf
         @method('PUT')
-        {{-- <pre>
-            @php
-                print_r($errors->all());
-            @endphp
-        </pre> --}}
         <div class="mb-3">
             <lable for="username" class="form-lable">User Name</lable>
             <input type="text" value="{{ $users->name }}" class="form-control" name="username">
