@@ -59,6 +59,14 @@
     <li>
         <a
             class="font-bold text-lg mb-4 block"
+            href="{{ route('user.index') }}"
+        >
+            Users
+        </a>
+    </li>
+    <li>
+        <a
+            class="font-bold text-lg mb-4 block"
             href="{{ route('logout') }}"
         >
             Logout

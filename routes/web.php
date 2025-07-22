@@ -1,13 +1,15 @@
 <?php
 
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\CalculatorController;
+use App\Models\Tweet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\TweetsController;
 use App\Http\Controllers\UserController;
-use App\Models\Tweet;
+use App\Http\Controllers\FollowController;
+use App\Http\Controllers\TweetsController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CalculatorController;
+use App\Http\Controllers\Auth\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,13 @@ Route::get('/explore', [TweetsController::class, 'explore'])->name('explore');
 Route::get('/profile', [TweetsController::class, 'profile'])->middleware('auth')->name('profile');
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('show');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/follow/{user}', [FollowController::class, 'store'])->name('follow');
+    Route::delete('/unfollow/{user}', [FollowController::class, 'destroy'])->name('unfollow');
+});
 
 // Route::get('/profile/updatepage/{id}', [TweetsController::class, 'updatePage'])->name('updatepage');
 // Route::put('/update/{id}', [TweetsController::class, 'update'])->name('update.user');
