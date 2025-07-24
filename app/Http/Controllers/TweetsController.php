@@ -14,6 +14,8 @@ class TweetsController extends Controller
     {
         // $tweets = Tweet::get();
 
+        // $tweets = auth()->user()->timeline();
+        // $tweets = Tweet::latest()->paginate(5);
         $tweets = auth()->user()->timeline();
         return view('home', compact('tweets'));
     }
@@ -70,10 +72,17 @@ public function explore(){
     return view('explore.explore');
 }
 
-public function profile(){
-    $user = Auth()->user();
-    return view('profile.profile', compact('user',));
+// public function profile(){
+//     $user = Auth()->user();
+//     return view('profile.profile', compact('user',));
+// }
+
+public function profile($id)
+{
+    $user = User::findOrFail($id); // or use `where('username', $id)` if using usernames
+    return view('profile.profile', compact('user'));
 }
+
 
 public function updatePage(User $user){
     $users = User::findOrFail($user->id);

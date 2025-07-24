@@ -88,4 +88,10 @@ class UserController extends Controller
     {
         //
     }
+
+    public function followers(){
+        $user = auth()->user();
+        $followers = $user->followers()->paginate(5);
+        return view('profile.followers', compact('user', 'followers'));
+    }
 }

@@ -55,6 +55,18 @@ class User extends Authenticatable
     //             ->latest()
     //             ->get();
     // }
+
+    // public function timeline(){
+    //     // include all of the user's tweets
+    //     // as well as the tweets of everyone
+    //     // they follow... descending order by date.
+
+    //     $friends = $this->follows()->pluck('id');
+
+    //     return Tweet::whereIn('user_id', $friends)
+    //             ->orWhere('user_id', $this->id)
+    //             ->latest()->get();
+    // }
     public function timeline(){
         // include all of the user's tweets
         // as well as the tweets of everyone
@@ -64,7 +76,7 @@ class User extends Authenticatable
 
         return Tweet::whereIn('user_id', $friends)
                 ->orWhere('user_id', $this->id)
-                ->latest()->get();
+                ->latest()->paginate(5);
     }
 
     public function tweets(){

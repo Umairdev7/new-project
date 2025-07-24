@@ -35,7 +35,9 @@ Route::get('/lists', [TweetsController::class, 'lists'])->middleware('auth')->na
 
 Route::get('/explore', [TweetsController::class, 'explore'])->name('explore');
 
-Route::get('/profile', [TweetsController::class, 'profile'])->middleware('auth')->name('profile');
+// Route::get('/profile', [TweetsController::class, 'profile'])->middleware('auth')->name('profile');
+Route::get('/profile/{id}', [TweetsController::class, 'profile'])->name('profile');
+
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
@@ -45,6 +47,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/follow/{user}', [FollowController::class, 'store'])->name('follow');
     Route::delete('/unfollow/{user}', [FollowController::class, 'destroy'])->name('unfollow');
 });
+
+Route::get('/followers', [UserController::class, 'followers'])->name('user.followers');
+
 
 // Route::get('/profile/updatepage/{id}', [TweetsController::class, 'updatePage'])->name('updatepage');
 // Route::put('/update/{id}', [TweetsController::class, 'update'])->name('update.user');
@@ -56,8 +61,11 @@ Route::resource('user', UserController::class);
 //    return view('calculator.calculator')->name('calculator');
 //});
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login_register');
 });
 
 Route::middleware('auth')->group(function(){

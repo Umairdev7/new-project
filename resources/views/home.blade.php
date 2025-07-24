@@ -8,6 +8,10 @@
                 @foreach ($tweets as $tweet)
                     @include('partial._tweet')
                 @endforeach
+                <div class="mt-4">
+                    {{ $tweets->links() }}
+                </div>
+
             </div>
     </div>
 @endsection
