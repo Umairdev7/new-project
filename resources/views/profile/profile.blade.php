@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+<div class="min-h-full">  <!-- Ensures content fills available height -->
+
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -43,21 +45,38 @@
       </div>
 
       <!-- Buttons -->
+    @if (auth()->id() == $user->id)
+
       <div class="mt-5 flex flex-wrap justify-center gap-4">
+          {{-- <button class="flex items-center gap-2 border border-gray-300 rounded-lg py-2 px-4 text-gray-700 font-medium hover:bg-gray-100 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            Edit
+        </button> --}}
     <a href="{{ route('user.edit',$user->id) }}">
         <button class="flex items-center gap-2 border border-gray-300 rounded-lg py-2 px-4 text-gray-700 font-medium hover:bg-gray-100 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-          </svg>
-            Edit
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536M9 11l6.536-6.536a2 2 0 112.828 2.828L11.828 13.828a2 2 0 01-1.414.586H9v-2.414a2 2 0 01.586-1.414z" />
+        </svg>
+        Edit
         </button>
     </a>
-        <button class="flex items-center gap-2 border border-gray-300 rounded-lg py-2 px-4 text-gray-700 font-medium hover:bg-gray-100 transition">
+        {{-- <button class="flex items-center gap-2 border border-gray-300 rounded-lg py-2 px-4 text-gray-700 font-medium hover:bg-gray-100 transition">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2m-6 0H7a2 2 0 01-2-2v-6a2 2 0 012-2h6m0 0V5a3 3 0 116 0v3" />
           </svg>
           Message
-        </button>
+        </button> --}}
+        <a href="{{ route('friends') }}">
+            <button class="flex items-center gap-2 border border-gray-300 rounded-lg py-2 px-4 text-gray-700 font-medium hover:bg-gray-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A4 4 0 018 16h8a4 4 0 012.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Friends
+            </button>
+        </a>
+
         <button aria-label="More options" class="flex items-center justify-center border border-gray-300 rounded-lg py-2 px-3 text-gray-700 hover:bg-gray-100 transition">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <circle cx="12" cy="12" r="1" />
@@ -66,6 +85,8 @@
           </svg>
         </button>
       </div>
+    @endif
+
 
       <!-- Bio/Description -->
         <p class="mt-6 max-w-xl text-center text-gray-700 text-sm leading-relaxed">
@@ -125,4 +146,5 @@
 
 </body>
 </html>
+</div>
 @endsection

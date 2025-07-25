@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Tweet;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -101,4 +102,77 @@ class User extends Authenticatable
         // Users that are following this user
         return $this->belongsToMany(User::class, 'follows', 'following_user_id', 'user_id');
     }
+
+    public function sentFriendRequests()
+    {
+        return $this->hasMany(FriendRequest::class, 'from_user_id');
+    }
+
+    public function receivedFriendRequests()
+    {
+        return $this->hasMany(FriendRequest::class, 'to_user_id');
+    }
+
+    // public function friends(){
+    //     return $this->belongsToMany(User::class, 'friend_requests', 'from_user_id', 'to_user_id')
+    //         ->wherePivot('status', 'accepted')
+    //         ->withPivot('status')
+    //         ->withTimestamps()
+    //         ->union(
+    //             $this->belongsToMany(User::class, 'friend_requests', 'to_user_id', 'from_user_id')
+    //                 ->wherePivot('status', 'accepted')
+    //                 ->withPivot('status')
+    //                 ->withTimestamps()
+    //         );
+    // }
+
+    // public function friends(){
+    //     $from = DB::table('friend_requests')
+    //         ->where('from_user_id', $this->id)
+    //         ->where('status', 'accepted')
+    //         ->pluck('to_user_id');
+
+    //     $to = DB::table('friend_requests')
+    //         ->where('to_user_id', $this->id)
+    //         ->where('status', 'accepted')
+    //         ->pluck('from_user_id');
+
+    //     $friendIds = $from->merge($to);
+
+    //     return User::whereIn('id', $friendIds)->get();
+    // }
+
+    // User.php
+    public function friends(){
+        $from = $this->belongsToMany(User::class, 'friend_requests', 'from_user_id', 'to_user_id')
+            ->wherePivot('status', 'accepted');
+
+        $to = $this->belongsToMany(User::class, 'friend_requests', 'to_user_id', 'from_user_id')
+            ->wherePivot('status', 'accepted');
+
+        return $from->get()->merge($to->get());
+    }
+
+    // Friends I sent requests to and were accepted
+    public function friendsFrom(){
+        return $this->belongsToMany(User::class, 'friend_requests', 'from_user_id', 'to_user_id')
+            ->wherePivot('status', 'accepted');
+    }
+
+    // Friends who sent me requests and I accepted
+    public function friendsTo()
+    {
+        return $this->belongsToMany(User::class, 'friend_requests', 'to_user_id', 'from_user_id')
+            ->wherePivot('status', 'accepted');
+    }
+
+    // Merge both sides into a virtual 'friends' attribute
+    public function getFriendsAttribute(){
+        return $this->friendsFrom->merge($this->friendsTo);
+    }
+
+
+
+
+
 }

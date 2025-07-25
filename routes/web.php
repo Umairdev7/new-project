@@ -6,10 +6,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\FriendController;
 use App\Http\Controllers\TweetsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\FriendRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +43,7 @@ Route::get('/profile/{id}', [TweetsController::class, 'profile'])->name('profile
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('show');
+Route::get('/users/{user}', [ProfileController::class, 'show'])->name('show');
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/follow/{user}', [FollowController::class, 'store'])->name('follow');
@@ -49,6 +51,23 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/followers', [UserController::class, 'followers'])->name('user.followers');
+
+// Friends
+Route::post('/friend-request/send/{toUserId}', [FriendRequestController::class, 'send'])->name('friend-request.send');
+Route::post('/friend-request/accept/{id}', [FriendRequestController::class, 'accept'])->name('friend-request.accept');
+Route::post('/friend-request/decline/{id}', [FriendRequestController::class, 'decline'])->name('friend-request.decline');
+// Route::get('/friend-requests', [FriendRequestController::class, 'index'])->name('friend-requests.index');
+Route::get('/friend-requests', [FriendRequestController::class, 'index'])
+    ->middleware('auth')
+    ->name('friend-requests.index');
+// Route::get('/friends', [FriendController::class, 'index'])->name('friends');
+Route::get('/friends', [FriendController::class, 'index'])->name('friends');
+
+
+
+
+
+
 
 
 // Route::get('/profile/updatepage/{id}', [TweetsController::class, 'updatePage'])->name('updatepage');

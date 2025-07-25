@@ -58,7 +58,7 @@
     });
 </script> --}}
 
-
+{{-- 2 --}}
 
 <!-- Include Rich Text Editor CSS & JS -->
 <link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />

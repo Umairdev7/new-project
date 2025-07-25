@@ -51,7 +51,7 @@
     <li>
         <a
             class="font-bold text-lg mb-4 block"
-            href="profile"
+            href="{{ route('profile', auth()->user()) }}"
         >
             Profile
         </a>
@@ -70,6 +70,22 @@
             href="{{ route('user.index') }}"
         >
             Users
+        </a>
+    </li>
+    <li>
+        <a
+            class="font-bold text-lg mb-4 block"
+            href="{{ route('friend-requests.index') }}"
+        >
+            Requests
+        </a>
+    </li>
+    <li>
+        <a
+            class="font-bold text-lg mb-4 block"
+            href="{{ route('friends') }}"
+        >
+            Friends
         </a>
     </li>
     <li>

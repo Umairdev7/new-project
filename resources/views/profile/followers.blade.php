@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-2xl mx-auto p-6">
+    <div class="min-h-full">  <!-- Ensures content fills available height -->
+
+{{-- <div class="max-w-2xl mx-auto p-6"> --}}
     <h2 class="text-xl font-bold mb-4">{{ $user->name }}'s Followers</h2>
 
     @forelse ($followers as $follower)
@@ -22,4 +24,5 @@
         {{ $followers->links() }}
     </div>
 </div>
+    {{-- </div> --}}
 @endsection

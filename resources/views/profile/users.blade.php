@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w-3xl mx-auto p-4">
+    <div class="min-h-full">  <!-- Ensures content fills available height -->
+
+    {{-- <div class="max-w-3xl mx-auto p-4"> --}}
         <h2 class="text-2xl font-bold mb-6">All Users</h2>
 
         @foreach($users as $user)
