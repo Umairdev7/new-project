@@ -57,6 +57,17 @@ class User extends Authenticatable
     //             ->get();
     // }
 
+    public function timeline(){
+    //     // include all of the user's tweets
+    //     // as well as the tweets of everyone
+    //     // they follow... descending order by date.
+
+        $friends = $this->follows()->pluck('id');
+
+        return Tweet::whereIn('user_id', $friends)
+                ->orWhere('user_id', $this->id)
+                ->latest()->get();
+    }
     // public function timeline(){
     //     // include all of the user's tweets
     //     // as well as the tweets of everyone
@@ -66,19 +77,8 @@ class User extends Authenticatable
 
     //     return Tweet::whereIn('user_id', $friends)
     //             ->orWhere('user_id', $this->id)
-    //             ->latest()->get();
+    //             ->latest()->paginate(5);
     // }
-    public function timeline(){
-        // include all of the user's tweets
-        // as well as the tweets of everyone
-        // they follow... descending order by date.
-
-        $friends = $this->follows()->pluck('id');
-
-        return Tweet::whereIn('user_id', $friends)
-                ->orWhere('user_id', $this->id)
-                ->latest()->paginate(5);
-    }
 
     public function tweets(){
         return $this->hasMany(Tweet::class);
@@ -169,6 +169,18 @@ class User extends Authenticatable
     // Merge both sides into a virtual 'friends' attribute
     public function getFriendsAttribute(){
         return $this->friendsFrom->merge($this->friendsTo);
+    }
+
+
+    // For Bookmark
+
+    public function bookmarks(){
+        return $this->hasMany(Bookmark::class);
+    }
+
+    public function bookmarkedTweets(){
+        return $this->belongsToMany(Tweet::class, 'bookmarks', 'user_id', 'tweet_id')
+                ->withTimestamps();
     }
 
 

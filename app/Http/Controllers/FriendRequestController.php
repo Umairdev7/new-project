@@ -10,12 +10,14 @@ class FriendRequestController extends Controller
 
 
     public function index(){
+        $user = auth()->user();
+
         $friendRequests  = FriendRequest::where('to_user_id', auth()->id())
             ->where('status', 'pending')
             ->with('sender')
             ->get();
 
-        return view('friend_requests.index', compact('friendRequests'));
+        return view('friend_requests.index', compact('user', 'friendRequests'));
     }
 
 

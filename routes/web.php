@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Tweet;
+use App\Models\Bookmark;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\TweetsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\FriendRequestController;
@@ -64,8 +66,13 @@ Route::get('/friend-requests', [FriendRequestController::class, 'index'])
 Route::get('/friends', [FriendController::class, 'index'])->name('friends');
 
 
+// Bookmark
 
-
+Route::middleware('auth')->group(function() {
+    Route::get('/bookmarked', [BookmarkController::class, 'index'])->name('bookmarks.index');
+    Route::post('/bookmarks', [BookmarkController::class, 'store'])->name('bookmarks.store');
+    Route::delete('/bookmarks/{tweet}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
+});
 
 
 

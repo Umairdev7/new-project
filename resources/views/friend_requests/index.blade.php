@@ -1,124 +1,236 @@
-{{-- @extends('layouts.app')
-
-@section('content')
-    <h2 class="text-xl font-bold mb-4">Incoming Friend Requests</h2>
-
-    @forelse($friendRequests as $request)
-        <div class="mb-4 p-4 border rounded flex justify-between items-center">
-            <span>{{ $request->sender->name }} sent you a friend request</span>
-
-            <div class="space-x-2">
-                <form action="{{ route('friend-request.accept', $request->id) }}" method="POST" class="inline">
-                    @csrf
-                    <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded">Accept</button>
-                </form>
-
-                <form action="{{ route('friend-request.decline', $request->id) }}" method="POST" class="inline">
-                    @csrf
-                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Decline</button>
-                </form>
-            </div>
-        </div>
-    @empty
-        <p>No pending friend requests.</p>
-    @endforelse
-@endsection --}}
-
-{{-- 2 --}}
-
-{{-- @extends('layouts.app')
-
-@section('content')
-    <div class="max-w-3xl mx-auto p-4 sm:p-6">
-        <h2 class="text-xl sm:text-2xl font-bold mb-6">Incoming Friend Requests</h2>
-
-        @forelse($friendRequests as $request)
-            <div class="mb-4 p-4 border rounded-lg shadow-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                <!-- Sender Info -->
-                <div class="flex items-center gap-4">
-                    <img src="{{ $request->sender->avatar }}" alt="{{ $request->sender->name }}"
-                         class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover">
-                    <div>
-                        <p class="font-semibold text-gray-900">{{ $request->sender->name }}</p>
-                        <p class="text-gray-500 text-sm">{{ '@' . \Illuminate\Support\Str::slug($request->sender->name) }}</p>
-                    </div>
-                </div>
-
-                <!-- Buttons -->
-                <div class="flex gap-2 mt-2 sm:mt-0">
-                    <form action="{{ route('friend-request.accept', $request->id) }}" method="POST">
-                        @csrf
-                        <button type="submit"
-                                class="bg-green-500 hover:bg-green-600 text-white text-sm px-4 py-2 rounded-lg shadow">
-                            Accept
-                        </button>
-                    </form>
-
-                    <form action="{{ route('friend-request.decline', $request->id) }}" method="POST">
-                        @csrf
-                        <button type="submit"
-                                class="bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2 rounded-lg shadow">
-                            Decline
-                        </button>
-                    </form>
-                </div>
-            </div>
-        @empty
-            <p class="text-gray-600">No pending friend requests.</p>
-        @endforelse
-    </div>
-@endsection --}}
-
-{{-- 3 --}}
-
+<!-- Your Account Personal Information -->
 @extends('layouts.app')
-
 @section('content')
-  <div class="min-h-full">  <!-- Ensures content fills available height -->
+
+@include('partial.profile_header')
+<div class="container">
+	<div class="row">
+		<div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
+			<div class="ui-block">
+				<div class="ui-block-title">
+					<h6 class="title">Friend Requests</h6>
+					<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
+				</div>
 
 
-    <div class="max-w-3xl mx-auto p-4 sm:p-6">
-        <h2 class="text-xl sm:text-2xl font-bold mb-6">Incoming Friend Requests</h2>
+				<!-- Notification List Frien Requests -->
 
-        @forelse($friendRequests as $request)
-            <div class="mb-4 p-4 border rounded-lg shadow-sm flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                <!-- Sender Info -->
-                <div class="flex items-center gap-4">
-                    <img src="{{ $request->sender->avatar }}" alt="{{ $request->sender->name }}"
-                         class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover">
-                    <div>
-                        <p class="font-semibold text-gray-900">{{ $request->sender->name }}</p>
-                        <p class="text-gray-500 text-sm">{{ '@' . \Illuminate\Support\Str::slug($request->sender->name) }}</p>
-                        {{-- <a href="{{ route('show', $request->sender->id) }}"
-                           class="text-blue-600 hover:underline text-sm mt-1 inline-block">View Profile
-                        </a> --}}
-                    </div>
-                </div>
+				<ul class="notification-list friend-requests">
 
-                <!-- Buttons -->
-                <div class="flex gap-2 mt-2 sm:mt-0">
-                    <form action="{{ route('friend-request.accept', $request->id) }}" method="POST">
-                        @csrf
-                        <button type="submit"
-                                class="bg-green-500 hover:bg-green-600 text-white text-sm px-4 py-2 rounded-lg shadow">
-                            Accept
-                        </button>
-                    </form>
+                    @forelse($friendRequests as $request)
 
-                    <form action="{{ route('friend-request.decline', $request->id) }}" method="POST">
-                        @csrf
-                        <button type="submit"
-                                class="bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2 rounded-lg shadow">
-                            Decline
-                        </button>
-                    </form>
-                </div>
-            </div>
-        @empty
-            <p class="text-gray-600">No pending friend requests.</p>
-        @endforelse
-    </div>
-  </div>
+					<li>
+						<div class="author-thumb">
+							{{-- <img src="img/avatar15-sm.jpg" alt="author"> --}}
+							<img src="{{ $request->sender->avatar }}" alt="{{ $request->sender->name }}">
+						</div>
+						<div class="notification-event">
+							{{-- <a href="#" class="h6 notification-friend">Tamara Romanoff</a> --}}
+							<a href="#" class="h6 notification-friend">{{ $request->sender->name }}</a>
+							{{-- <span class="chat-message-item">Mutual Friend: Sarah Hetfield</span> --}}
+							<span class="chat-message-item"><p class="text-sm text-gray-500">{{ '@' . \Illuminate\Support\Str::slug($request->sender->name) }}</p></span>
+						</div>
+						{{-- <span class="notification-icon">
+											<a href="#" class="accept-request">
+												<span class="icon-add">
+													<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+												</span>
+												Accept Friend Request
+											</a>
+
+											<a href="#" class="accept-request request-del">
+												<span class="icon-minus">
+													<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+												</span>
+											</a>
+
+						</span> --}}
+                        <span class="notification-icon">
+                            <form action="{{ route('friend-request.accept', $request->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="accept-request">
+                                    <span class="icon-add">
+                                    <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                    </span>
+                                    Accept Friend Request
+                                </button>
+                            </form>
+
+                            <form action="{{ route('friend-request.decline', $request->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="accept-request request-del">
+                                    <span class="icon-minus">
+                                    <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                    </span>
+                                </button>
+                            </form>
+                        </span>
+
+						<div class="more">
+							<svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-little-delete"><use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+						</div>
+					</li>
+
+					{{-- <li>
+						<div class="author-thumb">
+							<img src="img/avatar16-sm.jpg" alt="author">
+						</div>
+						<div class="notification-event">
+							<a href="#" class="h6 notification-friend">Tony Stevens</a>
+							<span class="chat-message-item">4 Friends in Common</span>
+						</div>
+						<span class="notification-icon">
+											<a href="#" class="accept-request">
+												<span class="icon-add">
+													<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+												</span>
+												Accept Friend Request
+											</a>
+
+											<a href="#" class="accept-request request-del">
+												<span class="icon-minus">
+													<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+												</span>
+											</a>
+
+										</span>
+
+						<div class="more">
+							<svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-little-delete"><use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+						</div>
+					</li>
+
+					<li class="accepted">
+						<div class="author-thumb">
+							<img src="img/avatar17-sm.jpg" alt="author">
+						</div>
+						<div class="notification-event">
+							You and <a href="#" class="h6 notification-friend">Mary Jane Stark</a> just became friends. Write on <a href="#" class="notification-link">his wall</a>.
+						</div>
+						<span class="notification-icon">
+											<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+										</span>
+
+						<div class="more">
+							<svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-little-delete"><use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+						</div>
+					</li>
+
+					<li>
+						<div class="author-thumb">
+							<img src="img/avatar18-sm.jpg" alt="author">
+						</div>
+						<div class="notification-event">
+							<a href="#" class="h6 notification-friend">Stagg Clothing</a>
+							<span class="chat-message-item">9 Friends in Common</span>
+						</div>
+						<span class="notification-icon">
+											<a href="#" class="accept-request">
+												<span class="icon-add">
+													<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+												</span>
+												Accept Friend Request
+											</a>
+
+											<a href="#" class="accept-request request-del">
+												<span class="icon-minus">
+													<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+												</span>
+											</a>
+
+										</span>
+
+						<div class="more">
+							<svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-little-delete"><use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+						</div>
+					</li> --}}
+
+                @empty
+                    <p class="text-gray-600">No pending friend requests.</p>
+                @endforelse
+
+				</ul>
+
+				<!-- ... end Notification List Frien Requests -->
+			</div>
+
+		</div>
+
+		<div class="col col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12 col-12 responsive-display-none">
+			<div class="ui-block">
+
+				<!-- Your Profile  -->
+
+				<div class="your-profile">
+					<div class="ui-block-title ui-block-title-small">
+						<h6 class="title">Your PROFILE</h6>
+					</div>
+
+					<div id="accordion" role="tablist" aria-multiselectable="true">
+						<div class="card">
+							<div class="card-header" role="tab" id="headingOne">
+								<h6 class="mb-0">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+										Profile Settings
+										<svg class="olymp-dropdown-arrow-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+									</a>
+								</h6>
+							</div>
+
+							<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+								<ul class="your-profile-menu">
+									<li>
+										<a href="28-YourAccount-PersonalInformation.html">Personal Information</a>
+									</li>
+									<li>
+										<a href="29-YourAccount-AccountSettings.html">Account Settings</a>
+									</li>
+									<li>
+										<a href="30-YourAccount-ChangePassword.html">Change Password</a>
+									</li>
+									<li>
+										<a href="31-YourAccount-HobbiesAndInterests.html">Hobbies and Interests</a>
+									</li>
+									<li>
+										<a href="32-YourAccount-EducationAndEmployement.html">Education and Employement</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="ui-block-title">
+						<a href="33-YourAccount-Notifications.html" class="h6 title">Notifications</a>
+						<a href="#" class="items-round-little bg-primary">8</a>
+					</div>
+					<div class="ui-block-title">
+						<a href="34-YourAccount-ChatMessages.html" class="h6 title">Chat / Messages</a>
+					</div>
+					<div class="ui-block-title">
+						<a href="35-YourAccount-FriendsRequests.html" class="h6 title">Friend Requests</a>
+						<a href="#" class="items-round-little bg-blue">4</a>
+					</div>
+					<div class="ui-block-title ui-block-title-small">
+						<h6 class="title">FAVOURITE PAGE</h6>
+					</div>
+					<div class="ui-block-title">
+						<a href="36-FavPage-SettingsAndCreatePopup.html" class="h6 title">Create Fav Page</a>
+					</div>
+					<div class="ui-block-title">
+						<a href="36-FavPage-SettingsAndCreatePopup.html" class="h6 title">Fav Page Settings</a>
+					</div>
+				</div>
+
+				<!-- ... end Your Profile  -->
+
+			</div>
+		</div>
+	</div>
+</div>
 @endsection
 
-
+<!-- ... end Your Account Personal Information -->

@@ -6,6 +6,7 @@ use auth;
 use App\Models\User;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
+use App\Models\FriendRequest;
 // use Illuminate\Support\Facades\Auth;
 
 class TweetsController extends Controller
@@ -16,8 +17,11 @@ class TweetsController extends Controller
 
         // $tweets = auth()->user()->timeline();
         // $tweets = Tweet::latest()->paginate(5);
+
+
+        $user = auth()->user();
         $tweets = auth()->user()->timeline();
-        return view('home', compact('tweets'));
+        return view('home', compact('user' ,'tweets'));
     }
     //     public function index()
     // {

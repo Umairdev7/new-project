@@ -15,4 +15,17 @@ class Tweet extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    // For Bookmark
+
+    public function bookmarks(){
+        return $this->hasMany(Bookmark::class);
+    }
+
+    public function bookmarkedBy(){
+        return $this->belongsToMany(User::class, 'bookmarks', 'tweet_id', 'user_id')
+                    ->withTimestamps();
+    }
+
+
 }
