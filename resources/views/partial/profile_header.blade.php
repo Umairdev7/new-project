@@ -18,11 +18,11 @@
 									</li>
 									<li>
 										{{-- <a href="05-ProfilePage-About.html">About</a> --}}
-										<a href="{{ route('user.index') }}">About</a>
+										<a href="{{ route('about') }}">About</a>
 									</li>
 									<li>
 										{{-- <a href="06-ProfilePage.html">Friends</a> --}}
-										<a href="{{ route('friend-requests.index') }}">Friends</a>
+										<a href="{{ route('friends') }}">Friends</a>
 									</li>
 								</ul>
 							</div>
@@ -57,7 +57,7 @@
 								<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 							</a>
 
-							<a href="#" class="btn btn-control bg-purple">
+							{{-- <a href="#" class="btn btn-control bg-purple">
 								<svg class="olymp-chat---messages-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
 							</a>
 
@@ -75,19 +75,22 @@
 										<a href="29-YourAccount-AccountSettings.html">Account Settings</a>
 									</li>
 								</ul>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 					<div class="top-header-author">
 						<a href="{{ route('home') }}" class="author-thumb">
 							{{-- <img src="img/author-main1.jpg" alt="author"> --}}
-							<img src="{{ $user->avatar }}" alt="author">
+							{{-- <img src="{{ $user->avatar }}" alt="author"> --}}
+							<img src="{{ auth()->user()->avatar }}" alt="author">
 						</a>
 						<div class="author-content">
 							{{-- <a href="{{ route('home') }}" class="h4 author-name">James Spiegel</a> --}}
-							<a href="{{ route('home') }}" class="h4 author-name">{{ $user->name }}</a>
+							{{-- <a href="{{ route('home') }}" class="h4 author-name">{{ $user->name }}</a> --}}
+							<a href="{{ route('home') }}" class="h4 author-name">{{ auth()->user()->name }}</a>
 							{{-- <div class="country">San Francisco, CA</div> --}}
-							<div class="country"><p class="text-gray-500">{{ '@' . \Illuminate\Support\Str::slug($user->name) }}</p></div>
+							{{-- <div class="country"><p class="text-gray-500">{{ '@' . \Illuminate\Support\Str::slug($user->name) }}</p></div> --}}
+							<div class="country"><p class="text-gray-500">{{ '@' . \Illuminate\Support\Str::slug(auth()->user()->name) }}</p></div>
 						</div>
 					</div>
 				</div>

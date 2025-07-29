@@ -17,11 +17,12 @@ class TweetsController extends Controller
 
         // $tweets = auth()->user()->timeline();
         // $tweets = Tweet::latest()->paginate(5);
+        $users = User::all();
 
 
         $user = auth()->user();
         $tweets = auth()->user()->timeline();
-        return view('home', compact('user' ,'tweets'));
+        return view('home', compact('user' ,'tweets', 'users'));
     }
     //     public function index()
     // {

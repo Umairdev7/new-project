@@ -14,6 +14,7 @@ use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\FriendRequestController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,8 @@ Route::middleware('auth')->group(function() {
 // Route::put('/update/{id}', [TweetsController::class, 'update'])->name('update.user');
 
 Route::resource('user', UserController::class);
+
+Route::get('/about', [UserController::class, 'about'])->name('about');
 
 
 //Route::get('/calculator', function () {

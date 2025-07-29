@@ -16,6 +16,11 @@ class UserController extends Controller
         return view('profile.users',compact('users'));
     }
 
+    public function about(){
+        $user = auth()->user();
+        return view('profile.about', compact('user'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

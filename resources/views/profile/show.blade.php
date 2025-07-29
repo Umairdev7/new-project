@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('content')
+{{-- @extends('layouts.app')
+@section('content') --}}
     <div class="min-h-full">  <!-- Ensures content fills available height -->
 
 <head>
@@ -219,4 +219,4 @@
   </main>
 </body>
     </div>
-@endsection
+{{-- @endsection --}}

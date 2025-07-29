@@ -34,7 +34,8 @@
 					</a>
 				</li>
 				<li>
-					<a href="18-MusicAndPlaylists.html">
+					{{-- <a href="18-MusicAndPlaylists.html"> --}}
+					<a href="{{route('friends')}}">
 						<svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="svg-icons/sprites/icons.svg#olymp-headphones-icon"></use></svg>
 					</a>
 				</li>

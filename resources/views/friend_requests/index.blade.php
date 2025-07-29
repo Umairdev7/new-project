@@ -150,7 +150,7 @@
 					</li> --}}
 
                 @empty
-                    <p class="text-gray-600">No pending friend requests.</p>
+                    {{-- <p class="text-gray-600">No pending friend requests.</p> --}}
                 @endforelse
 
 				</ul>
