@@ -92,7 +92,7 @@
 
 
 
-								<ul class="friends-harmonic">
+								{{-- <ul class="friends-harmonic">
 									<li>
 										<a href="#">
 											<img src="img/friend-harmonic7.jpg" alt="friend">
@@ -123,23 +123,52 @@
 								<div class="names-people-likes">
 									<a href="#">Jenny</a>, <a href="#">Robert</a> and
 									<br>6 more liked this
-								</div>
+								</div> --}}
+
+                                <ul class="friends-harmonic">
+                                @foreach($tweet->bookmarkedBy->take(5) as $user)
+                                    <li>
+                                        <a href="{{ route('profile', $user->id) }}">
+                                            <img src="{{ $user->avatar }}" alt="{{ $user->name }}">
+                                        </a>
+                                    </li>
+                                 @endforeach
+                                </ul>
+
+                                <div class="names-people-likes">
+                                @php
+                                    $total = $tweet->bookmarkedBy->count();
+                                    $names = $tweet->bookmarkedBy->take(2)->pluck('name')->toArray();
+                                @endphp
+
+                                @if($total > 0)
+                                    <a href="#">{{ $names[0] ?? '' }}</a>
+                                    @if(isset($names[1]))
+                                        , <a href="#">{{ $names[1] }}</a>
+                                    @endif
+                                    @if($total > 2)
+                                        and <br>{{ $total - 2 }} more liked this
+                                    @endif
+                                @endif
+                            </div>
 
 
 								<div class="comments-shared">
-									<a href="#" class="post-add-icon inline-items">
+									{{-- <a href="#" class="post-add-icon inline-items"> --}}
 										<svg class="olymp-speech-balloon-icon">
-											<use xlink:href="svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>
+											{{-- <use xlink:href="svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use> --}}
+                                            {{-- <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use> --}}
+                                            <i class="fa fa-thumbs-up"></i>
 										</svg>
-										<span>17</span>
-									</a>
+										<span>{{ $tweet->bookmarkedBy->count() }}</span>
+									{{-- </a> --}}
 
-									<a href="#" class="post-add-icon inline-items">
+									{{-- <a href="#" class="post-add-icon inline-items">
 										<svg class="olymp-share-icon">
 											<use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use>
 										</svg>
 										<span>24</span>
-									</a>
+									</a> --}}
 								</div>
 
 
@@ -147,19 +176,50 @@
 
 							<div class="control-block-button post-control-button">
 
-								<a href="#" class="btn btn-control featured-post">
+								{{-- <a href="#" class="btn btn-control featured-post">
 									<svg class="olymp-trophy-icon">
 										<use xlink:href="svg-icons/sprites/icons.svg#olymp-trophy-icon"></use>
 									</svg>
-								</a>
+								</a> --}}
 
-								<a href="#" class="btn btn-control">
+								{{-- <a href="#" class="btn btn-control">
 									<svg class="olymp-like-post-icon">
 										<use xlink:href="svg-icons/sprites/icons.svg#olymp-like-post-icon"></use>
 									</svg>
-								</a>
+								</a> --}}
 
-								<a href="#" class="btn btn-control">
+                                @auth
+    @if(auth()->user()->bookmarkedTweets->contains($tweet->id))
+        <a href="{{ route('bookmarks.destroy', $tweet->id) }}"
+           onclick="event.preventDefault(); document.getElementById('unbookmark-{{ $tweet->id }}').submit();"
+           class="btn btn-control text-blue-500 hover:text-blue-700">
+            <svg class="olymp-like-post-icon">
+                <use xlink:href="svg-icons/sprites/icons.svg#olymp-like-post-icon"></use>
+            </svg>
+        </a>
+
+        <form id="unbookmark-{{ $tweet->id }}" action="{{ route('bookmarks.destroy', $tweet->id) }}" method="POST" style="display:none;">
+            @csrf
+            @method('DELETE')
+        </form>
+    @else
+        <a href="{{ route('bookmarks.store') }}"
+           onclick="event.preventDefault(); document.getElementById('bookmark-{{ $tweet->id }}').submit();"
+           class="btn btn-control text-gray-500 hover:text-blue-500">
+            <svg class="olymp-like-post-icon">
+                <use xlink:href="svg-icons/sprites/icons.svg#olymp-like-post-icon"></use>
+            </svg>
+        </a>
+
+        <form id="bookmark-{{ $tweet->id }}" action="{{ route('bookmarks.store') }}" method="POST" style="display:none;">
+            @csrf
+            <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
+        </form>
+    @endif
+@endauth
+
+
+								{{-- <a href="#" class="btn btn-control">
 									<svg class="olymp-comments-post-icon">
 										<use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use>
 									</svg>
@@ -169,7 +229,7 @@
 									<svg class="olymp-share-icon">
 										<use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use>
 									</svg>
-								</a>
+								</a> --}}
 
 							</div>
 

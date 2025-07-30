@@ -5,13 +5,23 @@
 
 		<div class="mCustomScrollbar" data-mcs-theme="dark">
 			<ul class="chat-users">
-				<li class="inline-items js-chat-open">
+
+                @foreach (auth()->user()->follows as $user)
+
+				{{-- <li class="inline-items js-chat-open"> --}}
+				<li class="inline-items">
 					<div class="author-thumb">
-						<img alt="author" src="img/avatar67-sm.jpg" class="avatar">
+						{{-- <img alt="author" src="img/avatar67-sm.jpg" class="avatar"> --}}
+						<a href="{{ route('show', $user->id) }}">
+                        <img alt="{{ $user->name }}" src="{{ $user->avatar }}" class="avatar">
+                        </a>
 						<span class="icon-status online"></span>
 					</div>
 				</li>
-				<li class="inline-items js-chat-open">
+
+                @endforeach
+
+				{{-- <li class="inline-items js-chat-open">
 					<div class="author-thumb">
 						<img alt="author" src="img/avatar62-sm.jpg" class="avatar">
 						<span class="icon-status online"></span>
@@ -74,7 +84,7 @@
 						<img alt="author" src="img/avatar71-sm.jpg" class="avatar">
 						<span class="icon-status online"></span>
 					</div>
-				</li>
+				</li> --}}
 			</ul>
 		</div>
 
@@ -84,54 +94,65 @@
 			</a>
 		</div>
 
-		<a href="#" class="olympus-chat inline-items js-chat-open">
-			<svg class="olymp-chat---messages-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
+		<a href="{{ route('logout') }}" class="olympus-chat inline-items">
+			<svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('svg-icons/sprites/icons.svg#olymp-logout-icon') }}"></use></svg>
 		</a>
+
 
 	</div>
 
 	<div class="fixed-sidebar-right sidebar--large" id="sidebar-right-1">
 
-		<div class="mCustomScrollbar" data-mcs-theme="dark">
+        <div class="mCustomScrollbar" data-mcs-theme="dark">
 
-			<div class="ui-block-title ui-block-title-small">
-				<a href="#" class="title">Close Friends</a>
-				<a href="#">Settings</a>
+            <div class="ui-block-title ui-block-title-small">
+                <a href="#" class="title">Friends</a>
+				{{-- <a href="#">Settings</a> --}}
 			</div>
 
 			<ul class="chat-users">
-				<li class="inline-items js-chat-open">
 
-					<div class="author-thumb">
-						<img alt="author" src="img/avatar67-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
+                @foreach (auth()->user()->follows as $user)
+
+				{{-- <li class="inline-items js-chat-open"> --}}
+                    <li class="inline-items">
+
+
+                    <div class="author-thumb">
+                        <a href="{{ route('show', $user->id) }}">
+                            <img alt="{{ $user->name }}" src="{{ $user->avatar }}" class="avatar">
+                        </a>
+                        <span class="icon-status online"></span>
 					</div>
 
 					<div class="author-status">
-						<a href="#" class="h6 author-name">Carol Summers</a>
+                        {{-- <a href="#" class="h6 author-name">{{ $user->name }}</a> --}}
+                        <a href="{{ route('show', $user->id) }}">{{ $user->name }}</a>
 						<span class="status">ONLINE</span>
 					</div>
 
 					<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
 
-						<ul class="more-icons">
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
+						{{-- <ul class="more-icons">
+                            <li>
+                                <svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
 							</li>
 
 							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-add-to-conversation-icon"></use></svg>
+                                <svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-add-to-conversation-icon"></use></svg>
 							</li>
 
 							<li>
 								<svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-block-from-chat-icon"></use></svg>
 							</li>
-						</ul>
+						</ul> --}}
 
 					</div>
-
 				</li>
-				<li class="inline-items js-chat-open">
+
+                @endforeach
+
+				{{-- <li class="inline-items js-chat-open">
 
 					<div class="author-thumb">
 						<img alt="author" src="img/avatar62-sm.jpg" class="avatar">
@@ -263,11 +284,11 @@
 					</div>
 
 
-				</li>
+				</li> --}}
 			</ul>
 
 
-			<div class="ui-block-title ui-block-title-small">
+			{{-- <div class="ui-block-title ui-block-title-small">
 				<a href="#" class="title">MY FAMILY</a>
 				<a href="#">Settings</a>
 			</div>
@@ -465,12 +486,12 @@
 
 					</div>
 				</li>
-			</ul>
+			</ul> --}}
 
 		</div>
 
 		<div class="search-friend inline-items">
-			<form class="form-group" >
+			{{-- <form class="form-group" >
 				<input class="form-control" placeholder="Search Friends..." value="" type="text">
 			</form>
 
@@ -480,13 +501,16 @@
 
 			<a href="#" class="js-sidebar-open">
 				<svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
-			</a>
+			</a> --}}
 		</div>
 
-		<a href="#" class="olympus-chat inline-items js-chat-open">
+		{{-- <a href="#" class="olympus-chat inline-items js-chat-open"> --}}
+		<a href="{{route('friends')}}" class="olympus-chat inline-items ">
 
-			<h6 class="olympus-chat-title">OLYMPUS CHAT</h6>
-			<svg class="olymp-chat---messages-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
+			{{-- <h6 class="olympus-chat-title">OLYMPUS CHAT</h6> --}}
+			<h6 class="olympus-chat-title">FRIENDS</h6>
+			{{-- <svg class="olymp-chat---messages-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg> --}}
+			<svg class="olymp-chat---messages-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
 		</a>
 
 	</div>

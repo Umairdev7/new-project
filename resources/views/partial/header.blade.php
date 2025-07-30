@@ -23,24 +23,31 @@
 
 			<div class="control-icon more has-items">
 				<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-				<div class="label-avatar bg-blue">6</div>
+				{{-- <div class="label-avatar bg-blue">6</div> --}}
 
 				<div class="more-dropdown more-with-triangle triangle-top-center">
 					<div class="ui-block-title ui-block-title-small">
 						<h6 class="title">FRIEND REQUESTS</h6>
-						<a href="#">Find Friends</a>
-						<a href="#">Settings</a>
+						<a href="{{ route('user.index') }}">Find Friends</a>
+						{{-- <a href="#">Settings</a> --}}
 					</div>
 
 					<div class="mCustomScrollbar" data-mcs-theme="dark">
 						<ul class="notification-list friend-requests">
+
+                            {{-- @forelse($friendRequests as $request) --}}
+
+
 							<li>
 								<div class="author-thumb">
 									<img src="img/avatar55-sm.jpg" alt="author">
+									{{-- <img src="{{ $request->sender->avatar }}" alt="{{ $request->sender->name }}"> --}}
 								</div>
 								<div class="notification-event">
 									<a href="#" class="h6 notification-friend">Tamara Romanoff</a>
+									{{-- <a href="#" class="h6 notification-friend">{{ $request->sender->name }}</a> --}}
 									<span class="chat-message-item">Mutual Friend: Sarah Hetfield</span>
+									{{-- <span class="chat-message-item">{{ '@' . \Illuminate\Support\Str::slug($request->sender->name) }}</span> --}}
 								</div>
 								<span class="notification-icon">
 									<a href="#" class="accept-request">
@@ -49,11 +56,29 @@
 										</span>
 									</a>
 
+                                    {{-- <form action="{{ route('friend-request.accept', $request->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="accept-request">
+                                            <span class="icon-add without-text">
+											    <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+										    </span>
+                                        </button>
+                                    </form> --}}
+
 									<a href="#" class="accept-request request-del">
 										<span class="icon-minus">
 											<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
 									</a>
+
+                                    {{-- <form action="{{ route('friend-request.decline', $request->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="accept-request request-del">
+                                            <span class="icon-minus">
+                                                <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                            </span>
+                                        </button>
+                                    </form> --}}
 
 								</span>
 
@@ -62,7 +87,11 @@
 								</div>
 							</li>
 
-							<li>
+                            {{-- @empty --}}
+                                {{-- <p class="text-gray-600">No pending friend requests.</p> --}}
+                            {{-- @endforelse --}}
+
+							{{-- <li>
 								<div class="author-thumb">
 									<img src="img/avatar56-sm.jpg" alt="author">
 								</div>
@@ -88,9 +117,9 @@
 								<div class="more">
 									<svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
 								</div>
-							</li>
+							</li> --}}
 
-							<li class="accepted">
+							{{-- <li class="accepted">
 								<div class="author-thumb">
 									<img src="img/avatar57-sm.jpg" alt="author">
 								</div>
@@ -105,9 +134,9 @@
 									<svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
 									<svg class="olymp-little-delete"><use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
 								</div>
-							</li>
+							</li> --}}
 
-							<li>
+							{{-- <li>
 								<div class="author-thumb">
 									<img src="img/avatar58-sm.jpg" alt="author">
 								</div>
@@ -133,7 +162,7 @@
 								<div class="more">
 									<svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
 								</div>
-							</li>
+							</li> --}}
 
 						</ul>
 					</div>
@@ -142,7 +171,7 @@
 				</div>
 			</div>
 
-			<div class="control-icon more has-items">
+			{{-- <div class="control-icon more has-items">
 				<svg class="olymp-chat---messages-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
 				<div class="label-avatar bg-purple">2</div>
 
@@ -231,9 +260,9 @@
 
 					<a href="#" class="view-all bg-purple">View All Messages</a>
 				</div>
-			</div>
+			</div> --}}
 
-			<div class="control-icon more has-items">
+			{{-- <div class="control-icon more has-items">
 				<svg class="olymp-thunder-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-thunder-icon"></use></svg>
 
 				<div class="label-avatar bg-primary">8</div>
@@ -346,7 +375,7 @@
 
 					<a href="#" class="view-all bg-primary">View All Notifications</a>
 				</div>
-			</div>
+			</div> --}}
 
 			<div class="author-page author vcard inline-items more">
 				<div class="author-thumb">

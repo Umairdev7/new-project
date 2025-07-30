@@ -17,12 +17,21 @@ class TweetsController extends Controller
 
         // $tweets = auth()->user()->timeline();
         // $tweets = Tweet::latest()->paginate(5);
+
+        // $friendRequests  = FriendRequest::where('to_user_id', auth()->id())
+        //     ->where('status', 'pending')
+        //     ->with('sender')
+        //     ->get();
+
+        $friends = auth()->user()->friends(); // This is a Collection
+
+
         $users = User::all();
 
 
         $user = auth()->user();
         $tweets = auth()->user()->timeline();
-        return view('home', compact('user' ,'tweets', 'users'));
+        return view('home', compact('user' ,'tweets', 'users', 'friends'));
     }
     //     public function index()
     // {

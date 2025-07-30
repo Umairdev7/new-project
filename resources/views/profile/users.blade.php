@@ -46,7 +46,7 @@
 							</div>
 						</div>
 
-						<div class="swiper-container" data-slide="fade">
+						{{-- <div class="swiper-container" data-slide="fade"> --}}
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
 									<div class="control-block-button" data-swiper-parallax="-100">
@@ -56,7 +56,7 @@
 									</div>
 								</div>
 
-								<div class="swiper-slide">
+								{{-- <div class="swiper-slide">
 									<p class="friend-about" data-swiper-parallax="-500">
                                         {{ $user->about }}
                                     </p>
@@ -65,12 +65,12 @@
 										<span>Friends Since:</span>
                                         <div class="h6">{{ $user->created_at->diffForHumans() }}</div>
 									</div>
-								</div>
+								</div> --}}
 							</div>
 
 							<!-- If we need pagination -->
 							<div class="swiper-pagination"></div>
-						</div>
+						{{-- </div> --}}
 					</div>
 				</div>
 

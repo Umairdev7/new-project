@@ -8,7 +8,7 @@
 		<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 			<div class="ui-block responsive-flex">
 				<div class="ui-block-title">
-					<div class="h6 title">{{ $user->name }}'s Friends </div>
+					<div class="h6 title">{{ $user->name }}'s Friends ({{ $user->friends->count() }}) </div>
 					<form class="w-search">
 						<div class="form-group with-button">
 							<input class="form-control" type="text" placeholder="Search Friends...">
@@ -122,7 +122,8 @@
 					</div>
 				</div>
 
-				<!-- ... end Friend Item -->			</div>
+				<!-- ... end Friend Item -->
+            </div>
 		</div>
 
         @endforeach
