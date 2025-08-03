@@ -33,52 +33,55 @@
 					</div>
 
 					<div class="mCustomScrollbar" data-mcs-theme="dark">
+
+                        @if(Auth::check())
+
 						<ul class="notification-list friend-requests">
 
-                            {{-- @forelse($friendRequests as $request) --}}
+                            @forelse($friendRequests as $request)
 
 
 							<li>
 								<div class="author-thumb">
-									<img src="img/avatar55-sm.jpg" alt="author">
-									{{-- <img src="{{ $request->sender->avatar }}" alt="{{ $request->sender->name }}"> --}}
+									{{-- <img src="img/avatar55-sm.jpg" alt="author"> --}}
+									<img src="{{ $request->sender->avatar }}" alt="{{ $request->sender->name }}">
 								</div>
 								<div class="notification-event">
-									<a href="#" class="h6 notification-friend">Tamara Romanoff</a>
-									{{-- <a href="#" class="h6 notification-friend">{{ $request->sender->name }}</a> --}}
-									<span class="chat-message-item">Mutual Friend: Sarah Hetfield</span>
-									{{-- <span class="chat-message-item">{{ '@' . \Illuminate\Support\Str::slug($request->sender->name) }}</span> --}}
+									{{-- <a href="#" class="h6 notification-friend">Tamara Romanoff</a> --}}
+									<a href="#" class="h6 notification-friend">{{ $request->sender->name }}</a>
+									{{-- <span class="chat-message-item">Mutual Friend: Sarah Hetfield</span> --}}
+									<span class="chat-message-item">{{ '@' . \Illuminate\Support\Str::slug($request->sender->name) }}</span>
 								</div>
 								<span class="notification-icon">
-									<a href="#" class="accept-request">
+									{{-- <a href="#" class="accept-request">
 										<span class="icon-add without-text">
 											<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
-									</a>
+									</a> --}}
 
-                                    {{-- <form action="{{ route('friend-request.accept', $request->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('friend-request.accept', $request->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         <button type="submit" class="accept-request">
                                             <span class="icon-add without-text">
 											    <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 										    </span>
                                         </button>
-                                    </form> --}}
+                                    </form>
 
-									<a href="#" class="accept-request request-del">
+									{{-- <a href="#" class="accept-request request-del">
 										<span class="icon-minus">
 											<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
-									</a>
+									</a> --}}
 
-                                    {{-- <form action="{{ route('friend-request.decline', $request->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('friend-request.decline', $request->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         <button type="submit" class="accept-request request-del">
                                             <span class="icon-minus">
                                                 <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
                                             </span>
                                         </button>
-                                    </form> --}}
+                                    </form>
 
 								</span>
 
@@ -87,9 +90,9 @@
 								</div>
 							</li>
 
-                            {{-- @empty --}}
+                            @empty
                                 {{-- <p class="text-gray-600">No pending friend requests.</p> --}}
-                            {{-- @endforelse --}}
+                            @endforelse
 
 							{{-- <li>
 								<div class="author-thumb">
@@ -165,6 +168,9 @@
 							</li> --}}
 
 						</ul>
+
+                        @endif
+
 					</div>
 
 					<a href="#" class="view-all bg-blue">Check all your Events</a>
