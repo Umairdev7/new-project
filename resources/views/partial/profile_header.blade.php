@@ -6,8 +6,9 @@
 			<div class="ui-block">
 				<div class="top-header">
 					<div class="top-header-thumb">
-						<img src="img/top-header1.jpg" alt="nature">
+						{{-- <img src="img/top-header1.jpg" alt="nature"> --}}
 						{{-- <img src="{{ $user->avater }}" alt="nature"> --}}
+						<img src="images/cover.jpg" alt="nature">
 					</div>
 					<div class="profile-section">
 						<div class="row">
