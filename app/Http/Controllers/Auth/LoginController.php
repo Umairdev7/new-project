@@ -38,4 +38,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
     }
+
+    protected function redirectTo(){
+    // return auth()->user()->is_admin ? '/admin/dashboard' : '/dashboard';
+    return auth()->user()->is_admin ? '/admin/dashboard' : '/tweets';
+    }
+
+
 }

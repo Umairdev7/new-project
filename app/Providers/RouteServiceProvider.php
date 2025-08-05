@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+
+
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -17,7 +20,18 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/tweets';
+    // public const HOME = '/tweets';
+    // public const HOME = '/dashboard'; // or '/home' or wherever you want to redirect users after login
+    public const HOME = '/tweets'; // or '/home' or wherever you want to redirect users after login
+
+
+
+    public static function home(): string{
+        // return auth()->user()?->is_admin ? '/admin/dashboard' : '/dashboard';
+        return auth()->user()?->is_admin ? '/admin/dashboard' : '/tweets';
+    }
+
+
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -36,5 +50,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        Redirect::macro('home', function () {
+            return redirect(RouteServiceProvider::home());
+        });
+
     }
 }
