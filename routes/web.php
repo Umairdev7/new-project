@@ -97,6 +97,7 @@ Route::get('/about', [UserController::class, 'about'])->name('about');
 // });
 Route::get('/', function () {
     return view('auth.login_register');
+    // return view('admin.dashboard');
 });
 
 Route::middleware('auth')->group(function(){
