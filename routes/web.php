@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\AdminController;
 use App\Models\User;
 use App\Models\Tweet;
 use App\Models\Bookmark;
@@ -140,8 +142,24 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
                 //    For Admin
-    Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
-        Route::get('/dashboard', fn () => view('admin.dashboard'))->name('admin.dashboard');
-        Route::get('/users', fn () => view('admin.users'))->name('admin.users');
-        Route::get('/settings', fn () => view('admin.settings'))->name('admin.settings');
+    // Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
+    //     Route::get('/dashboard', fn () => view('admin.dashboard'))->name('admin.dashboard');
+    //     // Route::get('/users', fn () => view('admin.users'))->name('admin.users');
+    //     // Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    //     Route::get('/settings', fn () => view('admin.settings'))->name('admin.settings');
+    //     Route::resource('users', AdminUserController::class);
+    // });
+
+
+
+Route::prefix('admin')
+    ->middleware(['auth', 'is_admin'])
+    ->name('admin.') // <-- add this
+    ->group(function () {
+
+        Route::get('/dashboard', fn () => view('admin.dashboard'))->name('dashboard');
+        Route::get('/settings', fn () => view('admin.settings'))->name('settings');
+
+        Route::resource('users', AdminUserController::class);
     });
+
