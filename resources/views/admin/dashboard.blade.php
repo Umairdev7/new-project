@@ -6,7 +6,7 @@
         <button type="submit">Logout</button>
     </form> --}}
        <!-- row 1 -->
-        <div class="flex flex-wrap -mx-3">
+        {{-- <div class="flex flex-wrap -mx-3">
           <!-- card1 -->
           <div
             class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
@@ -141,7 +141,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
 
         <!-- cards row 2 -->
         <div class="flex flex-wrap mt-6 -mx-3">
@@ -152,8 +152,10 @@
                 <div class="flex flex-wrap -mx-3">
                   <div class="max-w-full px-3 lg:w-1/2 lg:flex-none">
                     <div class="flex flex-col h-full">
-                      <p class="pt-2 mb-1 font-semibold">Built by developers</p>
-                      <h5 class="font-bold">Soft UI Dashboard</h5>
+                      {{-- <p class="pt-2 mb-1 font-semibold">Built by developers</p> --}}
+                      <p class="pt-2 mb-1 font-semibold">Welcome</p>
+                      {{-- <h5 class="font-bold">Soft UI Dashboard</h5> --}}
+                      <h5 class="font-bold">Admininstrator, {{ Auth::user()->name }}</h5>
                       <p class="mb-12">
                         From colors, cards, typography to complex elements, you
                         will find the full documentation.
@@ -225,21 +227,32 @@
             <div
               class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
               <div class="flex-auto p-4">
-                <div
+
+
+            <div id="chartData"
+                data-months='@json($months)'
+                data-counts='@json($postCounts)'>
+            </div>
+            <div id="chartPosts"
+                data-months='@json($months)'
+                data-counts='@json($postCounts)'>
+            </div>
+
+            <div
                   class="py-4 pr-1 mb-4 bg-gradient-to-tl from-gray-900 to-slate-800 rounded-xl">
                   <div>
                     <canvas id="chart-bars" height="170"></canvas>
                   </div>
-                </div>
-                <h6 class="mt-6 mb-0 ml-2">Active Users</h6>
+            </div>
+                <h6 class="mt-6 mb-0 ml-2">Posts</h6>
                 <p class="ml-2 text-sm leading-normal">
-                  (<span class="font-bold">+23%</span>) than last week
+                  (<span class="font-bold">Candlestick Chart</span>)
                 </p>
                 <div class="w-full px-6 mx-auto max-w-screen-2xl rounded-xl">
                   <div class="flex flex-wrap mt-0 -mx-3">
                     <div class="flex-none w-1/4 max-w-full py-4 pl-0 pr-3 mt-0">
                       <div class="flex mb-2">
-                        <div
+                        {{-- <div
                           class="flex items-center justify-center w-5 h-5 mr-2 text-center bg-center rounded fill-current shadow-soft-2xl bg-gradient-to-tl from-purple-700 to-pink-500 text-neutral-900">
                           <svg
                             width="10px"
@@ -274,26 +287,44 @@
                               </g>
                             </g>
                           </svg>
-                        </div>
+                        </div> --}}
+
+                        <div
+                            class="flex items-center justify-center w-5 h-5 mr-2 text-center bg-center rounded fill-current shadow-soft-2xl bg-gradient-to-tl from-purple-700 to-pink-500 text-neutral-900">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="10px"
+                                height="10px"
+                                viewBox="0 0 640 512"
+                                fill="#FFFFFF">
+                                <path
+                                d="M96 128a64 64 0 1 0 64-64 64 64 0 0 0-64 64zm224 0a64 64 0 1 0 64-64 64 64 0 0 0-64 64zm128 256c0-53-43-96-96-96H128c-53 0-96 43-96 96v32a32 32 0 0 0 32 32h352a32 32 0 0 0 32-32zm160 0c0-35.3-28.7-64-64-64h-47.5c8.4 18.7 13.5 39.3 13.5 64v32a63.9 63.9 0 0 1-5.8 26.6A31.5 31.5 0 0 0 544 480h96a32 32 0 0 0 32-32z"/>
+                            </svg>
+                            </div>
+
+
                         <p
                           class="mt-1 mb-0 text-xs font-semibold leading-tight">
-                          Users
+                          Admins
                         </p>
                       </div>
-                      <h4 class="font-bold">36K</h4>
+                      <h4 class="font-bold">{{ $totalAdmins }}</h4>
                       <div
                         class="text-xs h-0.75 flex w-3/4 overflow-visible rounded-lg bg-gray-200">
                         <div
                           class="duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-3/5 flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all"
                           role="progressbar"
-                          aria-valuenow="60"
+                          {{-- aria-valuenow="60" --}}
+                          aria-valuenow="{{ $adminPercentage }}"
                           aria-valuemin="0"
-                          aria-valuemax="100"></div>
+                          {{-- aria-valuemax="100"></div> --}}
+                          aria-valuemax="100"
+                          style="width: {{ $adminPercentage }}%;"></div>
                       </div>
                     </div>
                     <div class="flex-none w-1/4 max-w-full py-4 pl-0 pr-3 mt-0">
                       <div class="flex mb-2">
-                        <div
+                        {{-- <div
                           class="flex items-center justify-center w-5 h-5 mr-2 text-center bg-center rounded fill-current shadow-soft-2xl bg-gradient-to-tl from-blue-600 to-cyan-400 text-neutral-900">
                           <svg
                             width="10px"
@@ -335,26 +366,43 @@
                               </g>
                             </g>
                           </svg>
+                        </div> --}}
+
+                        <div
+                            class="flex items-center justify-center w-5 h-5 mr-2 text-center bg-center rounded fill-current shadow-soft-2xl bg-gradient-to-tl from-blue-600 to-cyan-400 text-neutral-900">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="10px"
+                                height="10px"
+                                viewBox="0 0 640 512"
+                                fill="#FFFFFF">
+                                <path
+                                d="M96 128a64 64 0 1 0 64-64 64 64 0 0 0-64 64zm224 0a64 64 0 1 0 64-64 64 64 0 0 0-64 64zm128 256c0-53-43-96-96-96H128c-53 0-96 43-96 96v32a32 32 0 0 0 32 32h352a32 32 0 0 0 32-32zm160 0c0-35.3-28.7-64-64-64h-47.5c8.4 18.7 13.5 39.3 13.5 64v32a63.9 63.9 0 0 1-5.8 26.6A31.5 31.5 0 0 0 544 480h96a32 32 0 0 0 32-32z"/>
+                            </svg>
                         </div>
+
                         <p
                           class="mt-1 mb-0 text-xs font-semibold leading-tight">
-                          Clicks
+                          Users
                         </p>
                       </div>
-                      <h4 class="font-bold">2m</h4>
+                      <h4 class="font-bold">{{ $totalUsers }}</h4>
                       <div
                         class="text-xs h-0.75 flex w-3/4 overflow-visible rounded-lg bg-gray-200">
                         <div
                           class="duration-600 ease-soft -mt-0.38 w-9/10 -ml-px flex h-1.5 flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all"
                           role="progressbar"
-                          aria-valuenow="90"
+                          {{-- aria-valuenow="90" --}}
+                          aria-valuenow="{{ $userPercentage }}"
                           aria-valuemin="0"
-                          aria-valuemax="100"></div>
+                          {{-- aria-valuemax="100"></div> --}}
+                          aria-valuemax="100"
+                        style="width: {{ $userPercentage }}%;"></div>
                       </div>
                     </div>
                     <div class="flex-none w-1/4 max-w-full py-4 pl-0 pr-3 mt-0">
                       <div class="flex mb-2">
-                        <div
+                        {{-- <div
                           class="flex items-center justify-center w-5 h-5 mr-2 text-center bg-center rounded fill-current shadow-soft-2xl bg-gradient-to-tl from-red-500 to-yellow-400 text-neutral-900">
                           <svg
                             width="10px"
@@ -389,26 +437,44 @@
                               </g>
                             </g>
                           </svg>
+                        </div> --}}
+
+                        <div
+                            class="flex items-center justify-center w-5 h-5 mr-2 text-center bg-center rounded fill-current shadow-soft-2xl bg-gradient-to-tl from-red-500 to-yellow-400 text-neutral-900">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="10px"
+                                height="10px"
+                                viewBox="0 0 640 512"
+                                fill="#FFFFFF">
+                                <path
+                                d="M96 128a64 64 0 1 0 0-128 64 64 0 1 0 0 128zm448 0a64 64 0 1 0 0-128 64 64 0 1 0 0 128zM320 256a112 112 0 1 0 0-224 112 112 0 1 0 0 224zm0 48c-77.4 0-232 38.7-232 116v36h464v-36c0-77.3-154.6-116-232-116zM96 192c-53 0-96 43-96 96v32h128c0-27 10-52.1 26.6-71.1-17.1-14.8-40.1-24.9-65.4-24.9zm448 0c-25.3 0-48.3 10.1-65.4 24.9C586 267.9 596 293 596 320h128v-32c0-53-43-96-96-96z"/>
+                            </svg>
                         </div>
+
+
                         <p
                           class="mt-1 mb-0 text-xs font-semibold leading-tight">
-                          Sales
+                          Total
                         </p>
                       </div>
-                      <h4 class="font-bold">435$</h4>
+                      <h4 class="font-bold">{{ $totalAdmins + $totalUsers }}</h4>
                       <div
                         class="text-xs h-0.75 flex w-3/4 overflow-visible rounded-lg bg-gray-200">
                         <div
                           class="duration-600 ease-soft -mt-0.38 w-3/10 -ml-px flex h-1.5 flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all"
                           role="progressbar"
-                          aria-valuenow="30"
+                          {{-- aria-valuenow="30" --}}
+                          aria-valuenow="{{ $userPercentage }}"
                           aria-valuemin="0"
-                          aria-valuemax="100"></div>
+                          {{-- aria-valuemax="100"></div> --}}
+                          aria-valuemax="100"
+                          style="width: 100%;"></div>
                       </div>
                     </div>
                     <div class="flex-none w-1/4 max-w-full py-4 pl-0 pr-3 mt-0">
                       <div class="flex mb-2">
-                        <div
+                        {{-- <div
                           class="flex items-center justify-center w-5 h-5 mr-2 text-center bg-center rounded fill-current shadow-soft-2xl bg-gradient-to-tl from-red-600 to-rose-400 text-neutral-900">
                           <svg
                             width="10px"
@@ -447,21 +513,38 @@
                               </g>
                             </g>
                           </svg>
-                        </div>
+                        </div> --}}
+
+                        <div
+                            class="flex items-center justify-center w-5 h-5 mr-2 text-center bg-center rounded fill-current shadow-soft-2xl bg-gradient-to-tl from-red-600 to-rose-400 text-neutral-900">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="10px"
+                                height="10px"
+                                viewBox="0 0 384 512"
+                                fill="#FFFFFF">
+                                <path
+                                d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16h192v128h128v272c0 8.8-7.2 16-16 16H64zm256-336h-96V32h0l96 96zM96 288h192c8.8 0 16-7.2 16-16s-7.2-16-16-16H96c-8.8 0-16 7.2-16 16s7.2 16 16 16zm0 64h192c8.8 0 16-7.2 16-16s-7.2-16-16-16H96c-8.8 0-16 7.2-16 16s7.2 16 16 16zm0 64h128c8.8 0 16-7.2 16-16s-7.2-16-16-16H96c-8.8 0-16 7.2-16 16s7.2 16 16 16z"/>
+                            </svg>
+                            </div>
+
                         <p
                           class="mt-1 mb-0 text-xs font-semibold leading-tight">
-                          Items
+                          Posts
                         </p>
                       </div>
-                      <h4 class="font-bold">43</h4>
+                      <h4 class="font-bold">{{ $totalPosts }}</h4>
                       <div
                         class="text-xs h-0.75 flex w-3/4 overflow-visible rounded-lg bg-gray-200">
                         <div
                           class="duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-1/2 flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all"
                           role="progressbar"
-                          aria-valuenow="50"
+                          {{-- aria-valuenow="50" --}}
+                          aria-valuenow="100"
                           aria-valuemin="0"
-                          aria-valuemax="100"></div>
+                          {{-- aria-valuemax="100"></div> --}}
+                          aria-valuemax="100"
+                          style="width: 100%;"></div>
                       </div>
                     </div>
                   </div>
@@ -474,7 +557,7 @@
               class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
               <div
                 class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
-                <h6>Sales overview</h6>
+                <h6>Posts overview</h6>
                 <p class="text-sm leading-normal">
                   <i class="fa fa-arrow-up text-lime-500"></i>
                   <span class="font-semibold">4% more</span> in 2021

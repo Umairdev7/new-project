@@ -157,7 +157,8 @@ Route::prefix('admin')
     ->name('admin.') // <-- add this
     ->group(function () {
 
-        Route::get('/dashboard', fn () => view('admin.dashboard'))->name('dashboard');
+        // Route::get('/dashboard', fn () => view('admin.dashboard'))->name('dashboard');
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
         Route::get('/settings', fn () => view('admin.settings'))->name('settings');
 
         Route::resource('users', AdminUserController::class);

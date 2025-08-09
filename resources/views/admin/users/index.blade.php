@@ -335,7 +335,8 @@ $(document).ready(function(){
 						</td> --}}
 						<td>{{ $user->id }}</td>
 						{{-- <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="73071b1c1e12001b1201170a331e121a1f5d101c1e">[email&#160;protected]</a></td> --}}
-						<td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="73071b1c1e12001b1201170a331e121a1f5d101c1e">{{ $user->name }}</a></td>
+						{{-- <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="73071b1c1e12001b1201170a331e121a1f5d101c1e">{{ $user->name }}</a></td> --}}
+						<td><a href="#" class="__cf_email__" data-cfemail="73071b1c1e12001b1201170a331e121a1f5d101c1e">{{ $user->name }}</a></td>
 						<td>{{ $user->email }}</td>
                         <td>
                             @if($user->is_admin)

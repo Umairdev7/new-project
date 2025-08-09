@@ -78,8 +78,12 @@
   </body>
   <!-- plugin for charts  -->
   <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}" async></script>
-  <script src="{{ asset('assets/js/chart-1.js') }}" async></script>
-  <script src="{{ asset('assets/js/chart-2.js') }}" async></script>
+  {{-- <script src="{{ asset('assets/js/chart-1.js') }}" async></script> --}}
+  <script src="{{ asset('assets/js/chart-1.js') }}?v={{ time() }}"></script>
+  {{-- <script src="{{ asset('assets/js/chart-2.js') }}" async></script> --}}
+  {{-- <script src="{{ asset('assets/js/chart-2.js') }}" defer></script> --}}
+  <script src="{{ asset('assets/js/chart-2.js') }}?v={{ time() }}" async></script>
+
   <!-- plugin for scrollbar  -->
   <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}" async></script>
   <!-- github button -->
@@ -88,4 +92,5 @@
   <script
     src="{{ asset('assets/js/soft-ui-dashboard-tailwind.js') }}"
     async></script>
+
 </html>
