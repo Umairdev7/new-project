@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Tweet;
 use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller

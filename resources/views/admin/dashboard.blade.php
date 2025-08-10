@@ -200,11 +200,10 @@
                   class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 opacity-80"></span>
                 <div class="relative z-10 flex flex-col flex-auto h-full p-4">
                   <h5 class="pt-2 mb-6 font-bold text-white">
-                    Work with the rockets
+                    Admin Panel
                   </h5>
                   <p class="text-white">
-                    Wealth creation is an evolutionarily recent positive-sum
-                    game. It is all about who take the opportunity first.
+                    Manage All Users and Posts.
                   </p>
                   <a
                     class="mt-auto mb-0 text-sm font-semibold leading-normal text-white group"
@@ -558,10 +557,10 @@
               <div
                 class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
                 <h6>Posts overview</h6>
-                <p class="text-sm leading-normal">
+                {{-- <p class="text-sm leading-normal">
                   <i class="fa fa-arrow-up text-lime-500"></i>
                   <span class="font-semibold">4% more</span> in 2021
-                </p>
+                </p> --}}
               </div>
               <div class="flex-auto p-4">
                 <div>
