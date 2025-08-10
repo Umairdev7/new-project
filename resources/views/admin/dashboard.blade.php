@@ -155,18 +155,18 @@
                       {{-- <p class="pt-2 mb-1 font-semibold">Built by developers</p> --}}
                       <p class="pt-2 mb-1 font-semibold">Welcome</p>
                       {{-- <h5 class="font-bold">Soft UI Dashboard</h5> --}}
-                      <h5 class="font-bold">Admininstrator, {{ Auth::user()->name }}</h5>
+                      <h5 class="font-bold">{{ Auth::user()->name }}</h5>
                       <p class="mb-12">
                         From colors, cards, typography to complex elements, you
                         will find the full documentation.
                       </p>
-                      <a
+                      {{-- <a
                         class="mt-auto mb-0 text-sm font-semibold leading-normal group text-slate-500"
                         href="javascript:;">
                         Read More
                         <i
                           class="fas fa-arrow-right ease-bounce text-sm group-hover:translate-x-1.25 ml-1 leading-normal transition-all duration-200"></i>
-                      </a>
+                      </a> --}}
                     </div>
                   </div>
                   <div
@@ -205,13 +205,13 @@
                   <p class="text-white">
                     Manage All Users and Posts.
                   </p>
-                  <a
+                  {{-- <a
                     class="mt-auto mb-0 text-sm font-semibold leading-normal text-white group"
                     href="javascript:;">
                     Read More
                     <i
                       class="fas fa-arrow-right ease-bounce text-sm group-hover:translate-x-1.25 ml-1 leading-normal transition-all duration-200"></i>
-                  </a>
+                  </a> --}}
                 </div>
               </div>
             </div>

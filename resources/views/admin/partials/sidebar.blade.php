@@ -12,12 +12,15 @@
           {{-- target="_blank"> --}}
           >
           <img
-            src="{{ asset('assets/img/logo-ct.png') }}"
+            {{-- src="{{ asset('assets/img/logo-ct.png') }}" --}}
+            {{-- src="{{ asset('images/logo.svg') }}" --}}
+            src="{{ asset('images/admin3.svg') }}"
             class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8"
             alt="main_logo" />
           <span
             class="ml-1 font-semibold transition-all duration-200 ease-nav-brand"
-            >Soft UI Dashboard</span
+            {{-- >Soft UI Dashboard</span --}}
+            >Admin Panel</span
           >
         </a>
       </div>
@@ -494,7 +497,7 @@
         <!-- load phantom colors for card after: -->
         <p
           class="invisible hidden text-gray-800 text-red-500 text-red-600 after:bg-gradient-to-tl after:from-gray-900 after:to-slate-800 after:from-blue-600 after:to-cyan-400 after:from-red-500 after:to-yellow-400 after:from-green-600 after:to-lime-400 after:from-red-600 after:to-rose-400 after:from-slate-600 after:to-slate-300 text-lime-500 text-cyan-500 text-slate-400 text-fuchsia-500"></p>
-        <div
+        {{-- <div
           class="after:opacity-65 after:bg-gradient-to-tl after:from-slate-600 after:to-slate-300 relative flex min-w-0 flex-col items-center break-words rounded-2xl border-0 border-solid border-blue-900 bg-white bg-clip-border shadow-none after:absolute after:top-0 after:bottom-0 after:left-0 after:z-10 after:block after:h-full after:w-full after:rounded-2xl after:content-['']"
           sidenav-card>
           <div
@@ -522,6 +525,6 @@
               >
             </div>
           </div>
-        </div>
+        </div> --}}
       </div>
     </aside>
