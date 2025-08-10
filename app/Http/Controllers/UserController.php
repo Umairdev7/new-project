@@ -99,4 +99,12 @@ class UserController extends Controller
         $followers = $user->followers()->paginate(5);
         return view('profile.followers', compact('user', 'followers'));
     }
+
+    public function newsFeed(){
+        return view('profile.newsfeed');
+    }
+
+    public function photos(){
+        return view('profile.photos');
+    }
 }

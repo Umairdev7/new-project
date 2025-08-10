@@ -14,11 +14,11 @@
                     href="https://www.creative-tim.com"
                     class="font-semibold text-slate-700"
                     target="_blank"
-                    >Creative Tim</a
+                    >Tweety App</a
                   >
 
                   for a better web.
-                  <span class="w-full"> Distributed by ❤️ ThemeWagon </span>
+                  <span class="w-full"> Distributed by ❤️ Tweety </span>
                 </div>
               </div>
               <div
@@ -29,7 +29,7 @@
                     <a
                       href="#!"
                       class="block px-4 pt-0 pb-1 text-sm font-normal transition-colors ease-soft-in-out text-slate-500"
-                      >Creative Tim</a
+                      >Tweety</a
                     >
                   </li>
                   <li class="nav-item">

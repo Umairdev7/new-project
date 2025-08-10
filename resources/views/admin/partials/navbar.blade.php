@@ -19,7 +19,8 @@
                 Dashboard
               </li>
             </ol>
-            <h6 class="mb-0 font-bold capitalize">Dashboard</h6>
+            {{-- <h6 class="mb-0 font-bold capitalize">Dashboard</h6> --}}
+            <h6 class="mb-0 font-bold capitalize">{{ Auth::user()->name }}</h6>
           </nav>
 
           <div

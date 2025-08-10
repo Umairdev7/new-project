@@ -157,8 +157,7 @@
                       {{-- <h5 class="font-bold">Soft UI Dashboard</h5> --}}
                       <h5 class="font-bold">{{ Auth::user()->name }}</h5>
                       <p class="mb-12">
-                        From colors, cards, typography to complex elements, you
-                        will find the full documentation.
+                        This page shows the progress of all users and posts.
                       </p>
                       {{-- <a
                         class="mt-auto mb-0 text-sm font-semibold leading-normal group text-slate-500"
@@ -245,7 +244,7 @@
             </div>
                 <h6 class="mt-6 mb-0 ml-2">Posts</h6>
                 <p class="ml-2 text-sm leading-normal">
-                  (<span class="font-bold">Candlestick Chart</span>)
+                  <span class="font-bold">Candlestick Chart</span>
                 </p>
                 <div class="w-full px-6 mx-auto max-w-screen-2xl rounded-xl">
                   <div class="flex flex-wrap mt-0 -mx-3">

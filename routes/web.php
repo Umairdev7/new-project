@@ -91,6 +91,9 @@ Route::resource('user', UserController::class);
 
 Route::get('/about', [UserController::class, 'about'])->name('about');
 
+Route::get('/newsfeed', [UserController::class, 'newsFeed'])->name('newsfeed');
+Route::get('/photos', [UserController::class, 'photos'])->name('photos');
+
 
 //Route::get('/calculator', function () {
 //    return view('calculator.calculator')->name('calculator');

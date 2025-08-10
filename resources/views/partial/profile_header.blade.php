@@ -30,7 +30,8 @@
 							<div class="col col-lg-5 ml-auto col-md-5 col-sm-12 col-12">
 								<ul class="profile-menu">
 									<li>
-										<a href="07-ProfilePage-Photos.html">Photos</a>
+										{{-- <a href="07-ProfilePage-Photos.html">Photos</a> --}}
+										<a href="{{ route('photos') }}">Photos</a>
 									</li>
 									<li>
 										<a href="09-ProfilePage-Videos.html">Videos</a>
