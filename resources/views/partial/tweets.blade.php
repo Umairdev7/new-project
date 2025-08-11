@@ -53,6 +53,11 @@
                                 {!! $tweet->body !!}
 							</p>
 
+                            @if($tweet->image_path)
+                                <img src="{{ asset('storage/' . $tweet->image_path) }}" alt="Post image" width="300">
+                            @endif
+
+
 							<div class="post-additional-info inline-items">
 
 								{{-- <a href="#" class="post-add-icon inline-items">

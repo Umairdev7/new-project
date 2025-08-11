@@ -44,7 +44,7 @@
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
-							<form>
+							{{-- <form>
 								<div class="author-thumb">
 									<img src="img/author-page.jpg" alt="author">
 								</div>
@@ -69,7 +69,34 @@
 
 								</div>
 
-							</form>
+							</form> --}}
+
+<form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @csrf
+    <div class="author-thumb">
+        <img src="{{ auth()->user()->avatar }}" alt="author">
+    </div>
+    <div class="form-group with-icon label-floating is-empty">
+        <label class="control-label">Share what you are thinking here...</label>
+        <textarea class="form-control" name="body" placeholder=""></textarea>
+    </div>
+    <div class="add-options-message">
+        <label class="options-message" data-toggle="tooltip" data-placement="top" title="ADD PHOTOS">
+            <svg class="olymp-camera-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use></svg>
+            <input type="file" name="image" style="display:none;">
+        </label>
+        <button class="btn btn-primary btn-md-2">Post Status</button>
+        <button type="button" class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
+    </div>
+</form>
+
+
 						</div>
 
 						<div class="tab-pane" id="profile-1" role="tabpanel" aria-expanded="true">

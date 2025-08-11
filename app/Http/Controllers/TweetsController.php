@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
 use App\Models\FriendRequest;
-// use Illuminate\Support\Facades\Auth;
 
 class TweetsController extends Controller
 {
@@ -40,23 +39,49 @@ class TweetsController extends Controller
     //     ]);
     // }
 
-    public function store(){
+    // public function store(){
 
-        $attributes = request()->validate([
-            'title' => 'required',
-            'body' => 'required|max:255'
+    //     $attributes = request()->validate([
+    //         'title' => 'required',
+    //         'body' => 'required|max:255'
+    //     ]);
+
+    //     Tweet::create([
+    //         'user_id' => auth()->id(),
+    //         'title' => $attributes['title'],
+    //         'body' => $attributes['body']
+    //     ]);
+
+    //     return redirect('/tweets');
+    // }
+
+    public function store(Request $request)
+    {
+        // Validate
+        $validated = $request->validate([
+            'body' => 'required|string|max:5000',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
+        // Handle image upload
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('posts', 'public');
+        }
+
+        // Save post
         Tweet::create([
-            'user_id' => auth()->id(),
-            'title' => $attributes['title'],
-            'body' => $attributes['body']
+            'user_id'    => auth()->id(),
+            'body'       => $validated['body'],
+            'image_path' => $imagePath,
         ]);
 
-        return redirect('/tweets');
+        return redirect()->back()->with('success', 'Post created successfully!');
     }
 
-    public function show($tweet){
+
+
+        public function show($tweet){
             $tweets = Tweet::findOrFail($tweet);
             // return $tweets;
             return view("view", compact('tweets'));

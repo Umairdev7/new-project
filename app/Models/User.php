@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Photo;
 use App\Models\Tweet;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -187,6 +189,14 @@ class User extends Authenticatable
 
 
 
+    public function photos(){
+    return $this->hasMany(Photo::class);
+    }
+
+    // In your User model
+    public function getHeaderPhotoUrlAttribute(){
+        return $this->header_photo_path ? Storage::url($this->header_photo_path) : null;
+    }
 
 
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\TweetsController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\AdminTweetController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\HeaderPhotoController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FriendRequestController;
 use App\Http\Controllers\Admin\AdminPostController;
@@ -110,7 +112,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function(){
     Route::get('/tweets', [TweetsController::class, 'index'])->name('home');
     Route::get('/tweet/{tweet}', [TweetsController::class, 'show'])->name('viewtweet');
-    Route::post('/tweets', [TweetsController::class, 'store']);
+    Route::post('/tweets', [TweetsController::class, 'store'])->name('posts.store');
 });
 // Route::middleware('auth')->group(function(){
 //     Route::get('/tweets', 'TweetsController@index')->name('home');
@@ -173,4 +175,6 @@ Route::prefix('admin')
 
 
     });
+
+
 

@@ -10,8 +10,8 @@ class Tweet extends Model
 {
     use HasFactory;
 
-    // protected $guarded = [];
-    protected $fillable = ['user_id', 'title', 'body'];
+    protected $guarded = [];
+    // protected $fillable = ['user_id', 'title', 'body', 'image_path',];
 
 
     public function user(){
