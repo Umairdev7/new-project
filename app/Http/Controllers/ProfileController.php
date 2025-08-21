@@ -66,14 +66,53 @@ public function show(User $user)
     // $friends = $user->friends()->get(); // fetch actual results
     $isFriend = $currentUser->friends()->contains($user->id);
 
+    // Show all posts
+    $tweets = $user->tweets()->with('user')->latest()->paginate(10);
+
+
 
     return view('profile.show', compact(
         'user',
         'isFollowing',
         'friendRequest',
         'incomingRequest',
-        'isFriend'
+        'isFriend',
+        'tweets'
     ));
 }
+
+    public function friends(User $user){
+        // $friends = $user->friends()->paginate(12);
+        $friends = $user->friends();
+        return view('users.friends', compact('user', 'friends'));
+    }
+
+
+    // public function show(string $id)
+    // {
+    //     $user = User::findOrFail($id);
+    //     return view('profile.show', compact('user'));
+    // }
+
+    // public function updateHeaderPhoto(Request $request){
+    //     $user = auth()->user();
+
+    //     // If uploading a new file
+    //     if ($request->hasFile('header_photo')) {
+    //         $path = $request->file('header_photo')->store('headers', 'public');
+    //         $user->header_photo = $path;
+    //     }
+    //     // If choosing from existing photo
+    //     elseif ($request->photo_url) {
+    //         // Remove domain/public path if needed
+    //         $relativePath = str_replace(asset('storage/'), '', $request->photo_url);
+    //         $user->header_photo = $relativePath;
+    //     }
+
+    //     $user->save();
+
+    //     return response()->json(['status' => 'success']);
+    // }
+
 
 }

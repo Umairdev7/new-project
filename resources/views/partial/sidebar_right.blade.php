@@ -90,7 +90,7 @@
 
 		<div class="search-friend inline-items">
 			<a href="#" class="js-sidebar-open">
-				<svg class="olymp-menu-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
+				<svg class="olymp-menu-icon"><use xlink:href="{{ asset('svg-icons/sprites/icons.svg#olymp-menu-icon') }}"></use></svg>
 			</a>
 		</div>
 

@@ -72,11 +72,6 @@
 							</form> --}}
 
 <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
     @csrf
     <div class="author-thumb">
@@ -87,13 +82,35 @@
         <textarea class="form-control" name="body" placeholder=""></textarea>
     </div>
     <div class="add-options-message">
-        <label class="options-message" data-toggle="tooltip" data-placement="top" title="ADD PHOTOS">
+        {{-- <label class="options-message" data-toggle="tooltip" data-placement="top" title="ADD PHOTOS">
             <svg class="olymp-camera-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use></svg>
             <input type="file" name="image" style="display:none;">
-        </label>
+        </label> --}}
+
+        <input type="file" name="image" class="dropify" data-height="70">
+
+
+        <!-- Camera icon to trigger the modal -->
+        {{-- <a href="#" class="options-message" data-toggle="tooltip" data-placement="top" data-original-title="ADD PHOTOS" id="header-photo-trigger">
+            <svg class="olymp-camera-icon" data-toggle="modal" data-target="#update-header-photo">
+                <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+            </svg>
+            <input type="file" name="image" style="display:none;">
+
+        </a> --}}
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+<!-- Your existing modals remain the same -->
+
         <button class="btn btn-primary btn-md-2">Post Status</button>
         <button type="button" class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
     </div>
+
+
 </form>
 
 

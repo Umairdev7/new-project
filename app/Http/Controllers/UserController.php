@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Tweet;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -105,6 +106,9 @@ class UserController extends Controller
     }
 
     public function photos(){
-        return view('profile.photos');
+        $userImages = Tweet::where('user_id', auth()->id())
+                ->whereNotNull('image_path')
+                ->get();
+        return view('profile.photos', compact('userImages'));
     }
 }

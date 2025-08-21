@@ -84,7 +84,8 @@
 						<a href="{{ route('home') }}" class="author-thumb">
 							{{-- <img src="img/author-main1.jpg" alt="author"> --}}
 							{{-- <img src="{{ $user->avatar }}" alt="author"> --}}
-							<img src="{{ auth()->user()->avatar }}" alt="author">
+							<img src="{{ auth()->user()->avatar }}" alt="author"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">>
 						</a>
 						<div class="author-content">
 							{{-- <a href="{{ route('home') }}" class="h4 author-name">James Spiegel</a> --}}

@@ -1,3 +1,23 @@
+{{-- <!-- CSRF token for AJAX -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<!-- Current Header -->
+<div class="profile-header">
+    <img id="headerImage"
+         src="{{ auth()->user()->header_photo ? asset('storage/' . auth()->user()->header_photo) : asset('img/default-header.jpg') }}"
+         alt="Header Photo"
+         style="width:100%; height:auto;">
+</div>
+
+<!-- Hidden File Upload Form -->
+<form id="uploadForm" enctype="multipart/form-data" style="display:none;">
+    <input type="file" id="fileInput" name="header_photo" accept="image/*">
+</form> --}}
+
+{{-- <!-- Your modals (paste your given HTML here) -->
+@include('partials.update-header-photo-modal')
+@include('partials.choose-from-my-photo-modal') --}}
+
 <!-- Window-popup Update Header Photo -->
 
 <div class="modal fade" id="update-header-photo" tabindex="-1" role="dialog" aria-labelledby="update-header-photo" aria-hidden="true">
@@ -66,15 +86,33 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true">
 
-						<div class="choose-photo-item" data-mh="choose-item">
+						{{-- <div class="choose-photo-item" data-mh="choose-item">
 							<div class="radio">
 								<label class="custom-radio">
 									<img src="img/choose-photo1.jpg" alt="photo">
 									<input type="radio" name="optionsRadios">
 								</label>
 							</div>
-						</div>
-						<div class="choose-photo-item" data-mh="choose-item">
+						</div> --}}
+
+@php
+    $userImages = \App\Models\Tweet::where('user_id', auth()->id())
+        ->whereNotNull('image_path')
+        ->get();
+@endphp
+
+@foreach($userImages as $tweet)
+    <div class="choose-photo-item" data-mh="choose-item">
+        <div class="radio">
+            <label class="custom-radio">
+                <img src="{{ asset('storage/' . $tweet->image_path) }}" alt="photo">
+                <input type="radio" name="optionsRadios" value="{{ $tweet->id }}">
+            </label>
+        </div>
+    </div>
+@endforeach
+
+						{{-- <div class="choose-photo-item" data-mh="choose-item">
 							<div class="radio">
 								<label class="custom-radio">
 									<img src="img/choose-photo2.jpg" alt="photo">
@@ -139,7 +177,7 @@
 									<input type="radio" name="optionsRadios">
 								</label>
 							</div>
-						</div>
+						</div> --}}
 
 
 						<a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
@@ -148,7 +186,7 @@
 					</div>
 					<div class="tab-pane" id="profile" role="tabpanel" aria-expanded="false">
 
-						<div class="choose-photo-item" data-mh="choose-item">
+						{{-- <div class="choose-photo-item" data-mh="choose-item">
 							<figure>
 								<img src="img/choose-photo10.jpg" alt="photo">
 								<figcaption>
@@ -156,8 +194,29 @@
 									<span>Last Added: 2 hours ago</span>
 								</figcaption>
 							</figure>
-						</div>
-						<div class="choose-photo-item" data-mh="choose-item">
+						</div> --}}
+
+@php
+    $userImages = \App\Models\Tweet::where('user_id', auth()->id())
+        ->whereNotNull('image_path')
+        ->latest()
+        ->get();
+@endphp
+
+@foreach($userImages as $tweet)
+    <div class="choose-photo-item" data-mh="choose-item">
+        <figure>
+            <img src="{{ asset('storage/' . $tweet->image_path) }}" alt="photo">
+            <figcaption>
+                <a href="#">{{ $tweet->title ?? 'Untitled' }}</a>
+                <span>Last Added: {{ $tweet->created_at->diffForHumans() }}</span>
+            </figcaption>
+        </figure>
+    </div>
+@endforeach
+
+
+						{{-- <div class="choose-photo-item" data-mh="choose-item">
 							<figure>
 								<img src="img/choose-photo11.jpg" alt="photo">
 								<figcaption>
@@ -202,7 +261,7 @@
 									<span>Last Added: 57 mins ago</span>
 								</figcaption>
 							</figure>
-						</div>
+						</div> --}}
 
 
 						<a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>

@@ -55,6 +55,10 @@ Route::get('/profile/{id}', [TweetsController::class, 'profile'])->name('profile
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/users/{user}', [ProfileController::class, 'show'])->name('show');
+Route::get('/users/{user}/friends', [ProfileController::class, 'friends'])->name('users.friends');
+// Route::get('/users', [ProfileController::class, 'show'])->name('show');
+// Route::get('/users/{id}', [ProfileController::class, 'show'])->name('show');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/follow/{user}', [FollowController::class, 'store'])->name('follow');
@@ -175,6 +179,10 @@ Route::prefix('admin')
 
 
     });
+
+    // routes/web.php
+// Route::post('/update-header-photo', [ProfileController::class, 'updateHeaderPhoto'])->name('update.header');
+
 
 
 

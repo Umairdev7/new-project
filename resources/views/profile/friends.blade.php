@@ -92,6 +92,7 @@
 									</div> --}}
 									<div class="control-block-button" data-swiper-parallax="-100">
 										<a href="{{ route('show', $friend->id) }}" class="btn btn-control bg-blue">
+										{{-- <a href="{{ route('show') }}" class="btn btn-control bg-blue"> --}}
 											<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 										</a>
 

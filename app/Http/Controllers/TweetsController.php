@@ -80,6 +80,36 @@ class TweetsController extends Controller
     }
 
 
+    // public function store(Request $request){
+    //     $request->validate([
+    //         'body' => 'required|string|max:500',
+    //         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    //         'selected_photo' => 'nullable|string'
+    //     ]);
+
+    //     $imagePath = null;
+
+    //     // Handle file upload
+    //     if ($request->hasFile('image')) {
+    //         $imagePath = $request->file('image')->store('post_images', 'public');
+    //     }
+    //     // Handle selected photo from modal
+    //     elseif ($request->selected_photo) {
+    //         // This assumes the selected_photo contains a full URL
+    //         // You might need to parse it to get just the filename if storing locally
+    //         $imagePath = $request->selected_photo;
+    //     }
+
+    //     $post = Tweet::create([
+    //         'user_id' => auth()->id(),
+    //         'body' => $request->body,
+    //         'image_path' => $imagePath
+    //     ]);
+
+    //     return redirect()->back()->with('success', 'Post created successfully!');
+    // }
+
+
 
         public function show($tweet){
             $tweets = Tweet::findOrFail($tweet);

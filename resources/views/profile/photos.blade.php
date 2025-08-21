@@ -8,7 +8,8 @@
 		<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 			<div class="ui-block responsive-flex">
 				<div class="ui-block-title">
-					<div class="h6 title">James’s Photo Gallery</div>
+					{{-- <div class="h6 title">James’s Photo Gallery</div> --}}
+					<div class="h6 title">{{ auth()->user()->name }}’s Photo Gallery</div>
 
 					<div class="block-btn align-right">
 						<a href="#" data-toggle="modal" data-target="#create-photo-album" class="btn btn-primary btn-md-2">Create Album  +</a>
@@ -254,7 +255,7 @@
 							</div>
 						</div>
 
-						<div class="photo-album-item-wrap col-4-width">
+						{{-- <div class="photo-album-item-wrap col-4-width">
 
 
 							<div class="photo-album-item" data-mh="album-item">
@@ -329,9 +330,27 @@
 								</div>
 
 							</div>
-						</div>
+						</div> --}}
 
-						<div class="photo-album-item-wrap col-4-width">
+@foreach ($userImages as $tweet)
+<div class="photo-album-item-wrap col-4-width">
+{{-- @php
+    $userImages = \App\Models\Tweet::where('user_id', auth()->id())
+        ->whereNotNull('image_path')
+        ->get();
+@endphp --}}
+    <div class="photo-album-item" data-mh="album-item">
+        <div class="photo-item">
+            <img src="{{ asset('storage/' . $tweet->image_path) }}" alt="photo">
+            <div class="overlay overlay-dark"></div>
+            <a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="full-block"></a>
+        </div>
+    </div>
+</div>
+@endforeach
+
+
+						{{-- <div class="photo-album-item-wrap col-4-width">
 
 
 							<div class="photo-album-item" data-mh="album-item">
@@ -765,7 +784,7 @@
 								</div>
 
 							</div>
-						</div>
+						</div> --}}
 
 					</div>
 
