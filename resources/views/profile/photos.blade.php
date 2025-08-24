@@ -3,796 +3,348 @@
 
 @include('partial.profile_header')
 
-<div class="container">
-	<div class="row">
-		<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-			<div class="ui-block responsive-flex">
-				<div class="ui-block-title">
-					{{-- <div class="h6 title">James’s Photo Gallery</div> --}}
-					<div class="h6 title">{{ auth()->user()->name }}’s Photo Gallery</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="JavaScript image viewer.">
+  <meta name="author" content="Chen Fengyuan">
+  <title>Viewer.js</title>
+  {{-- <link rel="stylesheet" href="https://unpkg.com/bootstrap@4/dist/css/bootstrap.min.css" crossorigin="anonymous"> --}}
+  <link rel="stylesheet" href="{{ asset('viewer/css/viewer.css') }}">
+  <link rel="stylesheet" href="{{ asset('viewer/css/main.css') }}">
+</head>
+<body>
+  <!--[if lt IE 9]>
+  <div class="alert alert-warning alert-dismissible fade show m-0 rounded-0" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.
+  </div>
+  <![endif]-->
 
-					<div class="block-btn align-right">
-						<a href="#" data-toggle="modal" data-target="#create-photo-album" class="btn btn-primary btn-md-2">Create Album  +</a>
-
-						<a href="#" data-toggle="modal" data-target="#update-header-photo" class="btn btn-md-2 btn-border-think custom-color c-grey">Add Photos</a>
-					</div>
-
-					<ul class="nav nav-tabs photo-gallery" role="tablist">
-						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#photo-page" role="tab">
-								<svg class="olymp-photos-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-photos-icon"></use></svg>
-							</a>
-						</li>
-
-						<li class="nav-item">
-							<a class="nav-link active" data-toggle="tab" href="#album-page" role="tab">
-								<svg class="olymp-albums-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-albums-icon"></use></svg>
-							</a>
-						</li>
-
-					</ul>
-					<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="container">
-	<div class="row">
-		<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<div class="tab-pane" id="photo-page" role="tabpanel">
-
-					<div class="photo-album-wrapper">
-
-
-
-						<div class="photo-item half-width">
-							<img src="img/photo-item1.jpg" alt="photo">
-							<div class="overlay overlay-dark"></div>
-							<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-								<span>15</span>
-							</a>
-							<a href="#" data-toggle="modal" data-target="#open-photo-popup-v1" class="  full-block"></a>
-							<div class="content">
-								<a href="#" class="h6 title">Header Photos</a>
-								<time class="published" datetime="2017-03-24T18:18">1 week ago</time>
-							</div>
-						</div>
-
-
-						<div class="photo-item col-4-width">
-							<img src="img/photo-item2.jpg" alt="photo">
-							<div class="overlay overlay-dark"></div>
-							<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-								<span>15</span>
-							</a>
-							<a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="  full-block"></a>
-							<div class="content">
-								<a href="#" class="h6 title">Header Photos</a>
-								<time class="published" datetime="2017-03-24T18:18">1 week ago</time>
-							</div>
-						</div>
-
-
-						<div class="photo-item col-4-width">
-							<img src="img/photo-item3.jpg" alt="photo">
-							<div class="overlay overlay-dark"></div>
-							<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-								<span>15</span>
-							</a>
-							<a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="  full-block"></a>
-							<div class="content">
-								<a href="#" class="h6 title">Header Photos</a>
-								<time class="published" datetime="2017-03-24T18:18">1 week ago</time>
-							</div>
-						</div>
-
-
-						<div class="photo-item col-4-width">
-							<img src="img/photo-item4.jpg" alt="photo">
-							<div class="overlay overlay-dark"></div>
-							<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-								<span>15</span>
-							</a>
-							<a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="  full-block"></a>
-							<div class="content">
-								<a href="#" class="h6 title">Header Photos</a>
-								<time class="published" datetime="2017-03-24T18:18">1 week ago</time>
-							</div>
-						</div>
-
-
-						<div class="photo-item col-4-width">
-							<img src="img/photo-item5.jpg" alt="photo">
-							<div class="overlay overlay-dark"></div>
-							<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-								<span>15</span>
-							</a>
-							<a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="  full-block"></a>
-							<div class="content">
-								<a href="#" class="h6 title">Header Photos</a>
-								<time class="published" datetime="2017-03-24T18:18">1 week ago</time>
-							</div>
-						</div>
-
-
-						<div class="photo-item col-4-width">
-							<img src="img/photo-item6.jpg" alt="photo">
-							<div class="overlay overlay-dark"></div>
-							<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-								<span>15</span>
-							</a>
-							<a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="  full-block"></a>
-							<div class="content">
-								<a href="#" class="h6 title">Header Photos</a>
-								<time class="published" datetime="2017-03-24T18:18">1 week ago</time>
-							</div>
-						</div>
-
-
-						<div class="photo-item col-4-width">
-							<img src="img/photo-item7.jpg" alt="photo">
-							<div class="overlay overlay-dark"></div>
-							<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-								<span>15</span>
-							</a>
-							<a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="  full-block"></a>
-							<div class="content">
-								<a href="#" class="h6 title">Header Photos</a>
-								<time class="published" datetime="2017-03-24T18:18">1 week ago</time>
-							</div>
-						</div>
-
-
-						<div class="photo-item col-4-width">
-							<img src="img/photo-item8.jpg" alt="photo">
-							<div class="overlay overlay-dark"></div>
-							<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-								<span>15</span>
-							</a>
-							<a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="  full-block"></a>
-							<div class="content">
-								<a href="#" class="h6 title">Header Photos</a>
-								<time class="published" datetime="2017-03-24T18:18">1 week ago</time>
-							</div>
-						</div>
-
-
-						<div class="photo-item col-4-width">
-							<img src="img/photo-item9.jpg" alt="photo">
-							<div class="overlay overlay-dark"></div>
-							<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-								<span>15</span>
-							</a>
-							<a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="  full-block"></a>
-							<div class="content">
-								<a href="#" class="h6 title">Header Photos</a>
-								<time class="published" datetime="2017-03-24T18:18">1 week ago</time>
-							</div>
-						</div>
-
-
-						<div class="photo-item col-4-width">
-							<img src="img/photo-item10.jpg" alt="photo">
-							<div class="overlay overlay-dark"></div>
-							<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-								<span>15</span>
-							</a>
-							<a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="  full-block"></a>
-							<div class="content">
-								<a href="#" class="h6 title">Header Photos</a>
-								<time class="published" datetime="2017-03-24T18:18">1 week ago</time>
-							</div>
-						</div>
-
-
-						<div class="photo-item col-4-width">
-							<img src="img/photo-item11.jpg" alt="photo">
-							<div class="overlay overlay-dark"></div>
-							<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-								<span>15</span>
-							</a>
-							<a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="  full-block"></a>
-							<div class="content">
-								<a href="#" class="h6 title">Header Photos</a>
-								<time class="published" datetime="2017-03-24T18:18">1 week ago</time>
-							</div>
-						</div>
-
-
-						<a href="#" class="btn btn-control btn-more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-
-					</div>
-
-				</div>
-
-				<div class="tab-pane active" id="album-page" role="tabpanel">
-
-					<div class="photo-album-wrapper">
-
-						<div class="photo-album-item-wrap col-4-width" >
-
-							<div class="photo-album-item create-album" data-mh="album-item">
-
-								<a href="#" data-toggle="modal" data-target="#create-photo-album" class="  full-block"></a>
-
-								<div class="content">
-
-									<a href="#" class="btn btn-control bg-primary" data-toggle="modal" data-target="#create-photo-album">
-										<svg class="olymp-plus-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
-									</a>
-
-									<a href="#" class="title h5" data-toggle="modal" data-target="#create-photo-album">Create an Album</a>
-									<span class="sub-title">It only takes a few minutes!</span>
-
-								</div>
-
-							</div>
-						</div>
-
-						{{-- <div class="photo-album-item-wrap col-4-width">
-
-
-							<div class="photo-album-item" data-mh="album-item">
-								<div class="photo-item">
-									<img src="img/photo-item2.jpg" alt="photo">
-									<div class="overlay overlay-dark"></div>
-									<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-									<a href="#" class="post-add-icon">
-										<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-										<span>324</span>
-									</a>
-									<a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="  full-block"></a>
-								</div>
-
-								<div class="content">
-									<a href="#" class="title h5">South America Vacations</a>
-									<span class="sub-title">Last Added: 2 hours ago</span>
-
-									<div class="swiper-container">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide">
-												<ul class="friends-harmonic">
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic5.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic10.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic7.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic8.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic2.jpg" alt="friend">
-														</a>
-													</li>
-												</ul>
-											</div>
-
-											<div class="swiper-slide">
-												<div class="friend-count" data-swiper-parallax="-500">
-													<a href="#" class="friend-count-item">
-														<div class="h6">24</div>
-														<div class="title">Photos</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">86</div>
-														<div class="title">Comments</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">16</div>
-														<div class="title">Share</div>
-													</a>
-												</div>
-											</div>
-										</div>
-
-										<!-- If we need pagination -->
-										<div class="swiper-pagination"></div>
-									</div>
-								</div>
-
-							</div>
-						</div> --}}
-
-@foreach ($userImages as $tweet)
-<div class="photo-album-item-wrap col-4-width">
-{{-- @php
-    $userImages = \App\Models\Tweet::where('user_id', auth()->id())
-        ->whereNotNull('image_path')
-        ->get();
-@endphp --}}
-    <div class="photo-album-item" data-mh="album-item">
-        <div class="photo-item">
-            <img src="{{ asset('storage/' . $tweet->image_path) }}" alt="photo">
-            <div class="overlay overlay-dark"></div>
-            <a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="full-block"></a>
-        </div>
+  <!-- Header -->
+  {{-- <header class="navbar navbar-light navbar-expand-md">
+    <div class="container">
+      <a class="navbar-brand" href="./">Viewer.js</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/fengyuanchen/viewerjs/blob/main/README.md" data-toggle="tooltip" title="View the documentation">Docs</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Examples
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{{ asset('viewer/examples/custom-title.html') }}">Custom title</a>
+              <a class="dropdown-item" href="{{ asset('viewer/examples/custom-toolbar.html') }}">Custom toolbar</a>
+              <a class="dropdown-item" href="{{ asset('viewer/examples/dynamic-viewer.html') }}">Dynamic Viewer</a>
+              <a class="dropdown-item" href="{{ asset('viewer/examples/moving-range-limit.html') }}">Moving range limit</a>
+              <a class="dropdown-item" href="{{ asset('viewer/examples/viewer-in-modal.html') }}">Viewer in modal</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/fengyuanchen/viewerjs" data-toggle="tooltip" title="View the GitHub project">GitHub</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://fengyuanchen.github.io/" data-toggle="tooltip" title="Explore more projects">Explore</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://chenfengyuan.com/" data-toggle="tooltip" title="About the author">About</a>
+          </li>
+        </ul>
+      </div>
     </div>
-</div>
-@endforeach
+  </header> --}}
 
+  <!-- Jumbotron -->
+  {{-- <div class="jumbotron bg-primary text-white rounded-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md">
+          <h1>Viewer.js <small class="h6">v1.11.7</small></h1>
+          <p class="lead">JavaScript image viewer.</p>
+        </div>
+        <div class="col-md">
+          <div class="carbonads">
+            <script id="_carbonads_js" src="https://cdn.carbonads.com/carbon.js?serve=CKYI55Q7&placement=fengyuanchengithubio" async></script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> --}}
 
-						{{-- <div class="photo-album-item-wrap col-4-width">
+  <!-- Content -->
+  <div class="container">
+    {{-- <h1>Uploaded Photos</h1> --}}
+    <div class="h6 title">{{ auth()->user()->name }}’s Photo Gallery</div>
 
+    <hr>
+    <div class="row">
+      {{-- <div class="col-sm-12 col-md-3">
+        <h3>Options</h3>
+        <hr>
+        <div class="docs-toggles">
+          <div class="btn-group d-flex" data-toggle="buttons" role="group">
+            <label class="btn btn-primary active">
+              <input type="radio" class="sr-only" name="inline" data-value="false" autocomplete="off" checked> Modal mode
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" class="sr-only" name="inline" data-value="true" autocomplete="off"> Inline mode
+            </label>
+          </div>
+          <button class="btn btn-primary btn-block mb-3 d-md-none" id="toggle-options" data-target="#options" data-toggle="collapse" aria-expanded="true">Toggle options</button>
+          <div class="docs-collapse collapse d-md-block mb-3" id="options" aria-labelledby="toggle-options">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="backdrop" type="checkbox" name="backdrop" checked>
+                  <label for="backdrop" class="form-check-label">backdrop</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="button" type="checkbox" name="button" checked>
+                  <label for="button" class="form-check-label">button</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="focus" type="checkbox" name="focus" checked>
+                  <label for="focus" class="form-check-label">focus</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="fullscreen" type="checkbox" name="fullscreen" checked>
+                  <label for="fullscreen" class="form-check-label">fullscreen</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="loading" type="checkbox" name="loading" checked>
+                  <label for="loading" class="form-check-label">loading</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="loop" type="checkbox" name="loop" checked>
+                  <label for="loop" class="form-check-label">loop</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="keyboard" type="checkbox" name="keyboard" checked>
+                  <label for="keyboard" class="form-check-label">keyboard</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="movable" type="checkbox" name="movable" checked>
+                  <label for="movable" class="form-check-label">movable</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="navbar" type="checkbox" name="navbar" checked>
+                  <label for="navbar" class="form-check-label">navbar</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="rotatable" type="checkbox" name="rotatable" checked>
+                  <label for="rotatable" class="form-check-label">rotatable</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="scalable" type="checkbox" name="scalable" checked>
+                  <label for="scalable" class="form-check-label">scalable</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="slideOnTouch" type="checkbox" name="slideOnTouch" checked>
+                  <label for="slideOnTouch" class="form-check-label">slideOnTouch</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="title" type="checkbox" name="title" checked>
+                  <label for="title" class="form-check-label">title</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="toggleOnDblclick" type="checkbox" name="toggleOnDblclick" checked>
+                  <label for="toggleOnDblclick" class="form-check-label">toggleOnDblclick</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="toolbar" type="checkbox" name="toolbar" checked>
+                  <label for="toolbar" class="form-check-label">toolbar</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="tooltip" type="checkbox" name="tooltip" checked>
+                  <label for="tooltip" class="form-check-label">tooltip</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="transition" type="checkbox" name="transition" checked>
+                  <label for="transition" class="form-check-label">transition</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="zoomable" type="checkbox" name="zoomable" checked>
+                  <label for="zoomable" class="form-check-label">zoomable</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="zoomOnTouch" type="checkbox" name="zoomOnTouch" checked>
+                  <label for="zoomOnTouch" class="form-check-label">zoomOnTouch</label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-check">
+                  <input class="form-check-input" id="zoomOnWheel" type="checkbox" name="zoomOnWheel" checked>
+                  <label for="zoomOnWheel" class="form-check-label">zoomOnWheel</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> --}}
+      {{-- <div class="col-sm-8 col-md-6"> --}}
+        <div class="col-sm-8 col-md-6 mx-auto text-center">
+        {{-- <h3>Demo</h3> --}}
+        <hr>
+        <div class="docs-galley mb-3">
+          <ul class="docs-pictures clearfix">
+            @foreach ($userImages as $tweet)
 
-							<div class="photo-album-item" data-mh="album-item">
-								<div class="photo-item">
-									<img src="img/photo-album1.jpg" alt="photo">
-									<div class="overlay overlay-dark"></div>
-									<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-									<a href="#" class="post-add-icon">
-										<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-										<span>324</span>
-									</a>
+            {{-- <li><img data-original="{{ asset('viewer/images/tibet-1.jpg') }}" src="{{ asset('viewer/images/thumbnails/tibet-1.jpg') }}" alt="Cuo Na Lake"></li> --}}
+            <li><img data-original="{{ asset('storage/' . $tweet->image_path) }}" src="{{ asset('storage/' . $tweet->image_path) }}" alt="photo"></li>
+            {{-- <li><img data-original="{{ asset('viewer/images/tibet-2.jpg') }}" src="{{ asset('viewer/images/thumbnails/tibet-2.jpg') }}" alt="Tibetan Plateau"></li>
+            <li><img data-original="{{ asset('viewer/images/tibet-3.jpg') }}" src="{{ asset('viewer/images/thumbnails/tibet-3.jpg') }}" alt="Jokhang Temple"></li>
+            <li><img data-original="{{ asset('viewer/images/tibet-4.jpg') }}" src="{{ asset('viewer/images/thumbnails/tibet-4.jpg') }}" alt="Potala Palace 1"></li>
+            <li><img data-original="{{ asset('viewer/images/tibet-5.jpg') }}" src="{{ asset('viewer/images/thumbnails/tibet-5.jpg') }}" alt="Potala Palace 2"></li>
+            <li><img data-original="{{ asset('viewer/images/tibet-6.jpg') }}" src="{{ asset('viewer/images/thumbnails/tibet-6.jpg') }}" alt="Potala Palace 3"></li>
+            <li><img data-original="{{ asset('viewer/images/tibet-7.jpg') }}" src="{{ asset('viewer/images/thumbnails/tibet-7.jpg') }}" alt="Lhasa River"></li>
+            <li><img data-original="{{ asset('viewer/images/tibet-8.jpg') }}" src="{{ asset('viewer/images/thumbnails/tibet-8.jpg') }}" alt="Namtso 1"></li>
+            <li><img data-original="{{ asset('viewer/images/tibet-9.jpg') }}" src="{{ asset('viewer/images/thumbnails/tibet-9.jpg') }}" alt="Namtso 2"></li> --}}
 
-									<a href="#" data-toggle="modal" data-target="#open-photo-popup-v1" class="  full-block"></a>
-								</div>
+            @endforeach
+          </ul>
+        </div>
+      </div>
+      {{-- <div class="col-sm-4 col-md-3">
+        <h3>Methods</h3>
+        <hr>
+        <div class="docs-buttons" role="group">
+          <div class="input-group">
+            <span class="input-group-prepend">
+              <button type="button" class="btn btn-primary" data-method="view" data-target="#viewIndex" title="View one of the images with image's index">View</button>
+            </span>
+            <input type="text" class="form-control" id="viewIndex" name="index" value="4" placeholder="index">
+          </div>
+          <div class="input-group">
+            <span class="input-group-prepend">
+              <button type="button" class="btn btn-primary" data-enable="inline" data-method="zoom" data-target="#zoomRatio" title="Zoom the image">Zoom</button>
+            </span>
+            <input type="text" class="form-control" id="zoomRatio" name="ratio" value="0.5" placeholder="ratio">
+          </div>
+          <div class="input-group">
+            <span class="input-group-prepend">
+              <button type="button" class="btn btn-primary" data-enable="inline" data-method="zoomTo" data-target="#zoomToRatio" title="Zoom the image to a special ratio">Zoom To</button>
+            </span>
+            <input type="text" class="form-control" id="zoomToRatio" name="ratio" value="1" placeholder="ratio">
+          </div>
+          <div class="input-group">
+            <span class="input-group-prepend">
+              <button type="button" class="btn btn-primary" data-enable="inline" data-method="rotate" data-target="#rotateDegrees" title="Rotate the image">Rotate</button>
+            </span>
+            <input type="text" class="form-control" id="rotateDegrees" name="degrees" value="90" placeholder="degrees">
+          </div>
+          <div class="input-group">
+            <span class="input-group-prepend">
+              <button type="button" class="btn btn-primary" data-enable="inline" data-method="rotateTo" data-target="#rotateToDegrees" title="Rotate the image to a special angle">Rotate To</button>
+            </span>
+            <input type="text" class="form-control" id="rotateToDegrees" name="degrees" value="360" placeholder="degrees">
+          </div>
+          <div class="btn-group d-flex" role="group">
+            <button type="button" class="btn btn-primary" data-arguments="[0.5]" data-enable="inline" data-method="zoom" title="Zoom in">Zoom In</button>
+            <button type="button" class="btn btn-primary" data-arguments="[-0.5]" data-enable="inline" data-method="zoom" title="Zoom out">Zoom out</button>
+          </div>
+          <div class="btn-group d-flex" role="group">
+            <button type="button" class="btn btn-primary" data-arguments="[-90]" data-enable="inline" data-method="rotate" title="Rotate left">Rotate Left</button>
+            <button type="button" class="btn btn-primary" data-arguments="[90]" data-enable="inline" data-method="rotate" title="Rotate right">Rotate Right</button>
+          </div>
+          <div class="btn-group d-flex" role="group">
+            <button type="button" class="btn btn-primary" data-arguments="[-1]" data-enable="inline" data-method="scaleX" title="Flip horizontal">Flip horizontal</button>
+            <button type="button" class="btn btn-primary" data-arguments="[-1]" data-enable="inline" data-method="scaleY" title="Flip vertical">Flip vertical</button>
+          </div>
+          <div class="btn-group d-flex" role="group">
+            <button type="button" class="btn btn-primary" data-arguments="[-10,0]" data-enable="inline" data-method="move" title="Move left">Left</button>
+            <button type="button" class="btn btn-primary" data-arguments="[10,0]" data-enable="inline" data-method="move" title="Move right">Right</button>
+            <button type="button" class="btn btn-primary" data-arguments="[0,-10]" data-enable="inline" data-method="move" title="Move up">Up</button>
+            <button type="button" class="btn btn-primary" data-arguments="[0,10]" data-enable="inline" data-method="move" title="Move down">Down</button>
+          </div>
+          <div class="btn-group d-flex" role="group">
+            <button type="button" class="btn btn-primary" data-enable="inline" data-method="prev" title="View previous image">Prev</button>
+            <button type="button" class="btn btn-primary" data-enable="inline" data-method="next" title="View next image">Next</button>
+            <button type="button" class="btn btn-primary" data-enable="inline" data-method="play" title="Play the images">Play</button>
+            <button type="button" class="btn btn-primary" data-enable="inline" data-method="stop" title="Stop the playing">Stop</button>
+          </div>
+          <div class="btn-group d-flex" role="group">
+            <button type="button" class="btn btn-primary" data-enable="modal" data-method="show" title="Show the viewer">Show</button>
+            <button type="button" class="btn btn-primary" data-method="hide" title="Hide the viewer" disabled>Hide</button>
+            <button type="button" class="btn btn-primary" data-enable="inline" data-method="full" title="Enter modal mode">Full</button>
+            <button type="button" class="btn btn-primary" data-method="exit" title="Exit modal mode" disabled>Exit</button>
+          </div>
+          <div class="btn-group d-flex" role="group">
+            <button type="button" class="btn btn-primary" data-enable="inline" data-method="reset">Reset</button>
+            <button type="button" class="btn btn-primary" data-enable="inline" data-method="tooltip">Tooltip</button>
+          </div>
+          <button type="button" class="btn btn-block btn-danger" data-enable="modal inline" data-method="destroy">Destroy</button>
+        </div>
+      </div> --}}
+    </div>
+  </div>
 
-								<div class="content">
-									<a href="#" class="title h5">Photoshoot Summer 2016</a>
-									<span class="sub-title">Last Added: 5 weeks ago</span>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="heart"></p>
+      <nav class="nav flex-wrap justify-content-center mb-3">
+        <a class="nav-link" href="https://github.com/fengyuanchen/viewerjs">GitHub</a>
+        <a class="nav-link" href="https://github.com/fengyuanchen/viewerjs/releases">Releases</a>
+        <a class="nav-link" href="https://github.com/fengyuanchen/viewerjs/blob/main/LICENSE">License</a>
+        <a class="nav-link" href="https://chenfengyuan.com/">About</a>
+      </nav>
+    </div>
+  </footer>
 
-									<div class="swiper-container" data-slide="fade">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide">
-												<ul class="friends-harmonic">
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic5.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic10.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic7.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic8.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic2.jpg" alt="friend">
-														</a>
-													</li>
-												</ul>
-											</div>
+  <!-- Scripts -->
+  <script src="https://unpkg.com/jquery@3/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap@4/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="https://fengyuanchen.github.io/shared/google-analytics.js" crossorigin="anonymous"></script>
+  <script src="{{ asset('viewer/js/viewer.js') }}"></script>
+  <script src="{{ asset('viewer/js/main.js') }}"></script>
+</body>
+</html>
 
-											<div class="swiper-slide">
-												<div class="friend-count" data-swiper-parallax="-500">
-													<a href="#" class="friend-count-item">
-														<div class="h6">24</div>
-														<div class="title">Photos</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">86</div>
-														<div class="title">Comments</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">16</div>
-														<div class="title">Share</div>
-													</a>
-												</div>
-											</div>
-										</div>
-
-										<!-- If we need pagination -->
-										<div class="swiper-pagination"></div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="photo-album-item-wrap col-4-width">
-
-
-							<div class="photo-album-item" data-mh="album-item">
-								<div class="photo-item">
-									<img src="img/photo-album2.jpg" alt="photo">
-									<div class="overlay overlay-dark"></div>
-									<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-									<a href="#" class="post-add-icon">
-										<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-										<span>324</span>
-									</a>
-
-									<a href="#" data-toggle="modal" data-target="#open-photo-popup-v1" class="  full-block"></a>
-								</div>
-
-								<div class="content">
-									<a href="#" class="title h5">Amazing Street Food</a>
-									<span class="sub-title">Last Added: 6 mins ago</span>
-
-									<div class="swiper-container" data-slide="fade">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide">
-												<ul class="friends-harmonic">
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic10.jpg" alt="friend">
-														</a>
-													</li>
-												</ul>
-											</div>
-
-											<div class="swiper-slide">
-												<div class="friend-count" data-swiper-parallax="-500">
-													<a href="#" class="friend-count-item">
-														<div class="h6">24</div>
-														<div class="title">Photos</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">86</div>
-														<div class="title">Comments</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">16</div>
-														<div class="title">Share</div>
-													</a>
-												</div>
-											</div>
-										</div>
-
-										<!-- If we need pagination -->
-										<div class="swiper-pagination"></div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="photo-album-item-wrap col-4-width">
-
-							<div class="photo-album-item" data-mh="album-item">
-								<div class="photo-item">
-									<img src="img/photo-album3.jpg" alt="photo">
-									<div class="overlay overlay-dark"></div>
-									<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-									<a href="#" class="post-add-icon">
-										<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-										<span>324</span>
-									</a>
-
-									<a href="#" data-toggle="modal" data-target="#open-photo-popup-v1" class="  full-block"></a>
-								</div>
-
-								<div class="content">
-									<a href="#" class="title h5">Graffiti & Street Art</a>
-									<span class="sub-title">Last Added: 16 hours ago</span>
-
-									<div class="swiper-container" data-slide="fade">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide">
-												<ul class="friends-harmonic">
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic10.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic7.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic8.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic2.jpg" alt="friend">
-														</a>
-													</li>
-												</ul>
-											</div>
-
-											<div class="swiper-slide">
-												<div class="friend-count" data-swiper-parallax="-500">
-													<a href="#" class="friend-count-item">
-														<div class="h6">24</div>
-														<div class="title">Photos</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">86</div>
-														<div class="title">Comments</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">16</div>
-														<div class="title">Share</div>
-													</a>
-												</div>
-											</div>
-										</div>
-
-										<!-- If we need pagination -->
-										<div class="swiper-pagination"></div>
-									</div>
-								</div>
-
-							</div>
-
-						</div>
-
-						<div class="photo-album-item-wrap col-4-width">
-
-
-							<div class="photo-album-item" data-mh="album-item">
-								<div class="photo-item">
-									<img src="img/photo-album4.jpg" alt="photo">
-									<div class="overlay overlay-dark"></div>
-									<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-									<a href="#" class="post-add-icon">
-										<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-										<span>324</span>
-									</a>
-
-									<a href="#" data-toggle="modal" data-target="#open-photo-popup-v1" class="  full-block"></a>
-								</div>
-
-								<div class="content">
-									<a href="#" class="title h5">Amazing Landscapes</a>
-									<span class="sub-title">Last Added: 13 mins ago</span>
-
-									<div class="swiper-container" data-slide="fade">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide">
-												<ul class="friends-harmonic">
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic5.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic10.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic7.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic8.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic2.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/avatar30-sm.jpg" alt="author">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/avatar29-sm.jpg" alt="user">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/avatar28-sm.jpg" alt="user">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/avatar27-sm.jpg" alt="user">
-														</a>
-													</li>
-													<li>
-														<a href="#" class="all-users">+3</a>
-													</li>
-												</ul>
-											</div>
-
-											<div class="swiper-slide">
-												<div class="friend-count" data-swiper-parallax="-500">
-													<a href="#" class="friend-count-item">
-														<div class="h6">24</div>
-														<div class="title">Photos</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">86</div>
-														<div class="title">Comments</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">16</div>
-														<div class="title">Share</div>
-													</a>
-												</div>
-											</div>
-										</div>
-
-										<!-- If we need pagination -->
-										<div class="swiper-pagination"></div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="photo-album-item-wrap col-4-width">
-
-
-							<div class="photo-album-item" data-mh="album-item">
-								<div class="photo-item">
-									<img src="img/photo-item6.jpg" alt="photo">
-									<div class="overlay overlay-dark"></div>
-									<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-									<a href="#" class="post-add-icon">
-										<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-										<span>324</span>
-									</a>
-
-									<a href="#" data-toggle="modal" data-target="#open-photo-popup-v1" class="  full-block"></a>
-								</div>
-
-								<div class="content">
-									<a href="#" class="title h5">The Majestic Canyon</a>
-									<span class="sub-title">Last Added: 57 mins ago</span>
-
-									<div class="swiper-container" data-slide="fade">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide">
-												<ul class="friends-harmonic">
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic10.jpg" alt="friend">
-														</a>
-													</li>
-												</ul>
-											</div>
-
-											<div class="swiper-slide">
-												<div class="friend-count" data-swiper-parallax="-500">
-													<a href="#" class="friend-count-item">
-														<div class="h6">24</div>
-														<div class="title">Photos</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">86</div>
-														<div class="title">Comments</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">16</div>
-														<div class="title">Share</div>
-													</a>
-												</div>
-											</div>
-										</div>
-
-										<!-- If we need pagination -->
-										<div class="swiper-pagination"></div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="photo-album-item-wrap col-4-width">
-
-
-							<div class="photo-album-item" data-mh="album-item">
-								<div class="photo-item">
-									<img src="img/photo-album5.jpg" alt="photo">
-									<div class="overlay overlay-dark"></div>
-									<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-									<a href="#" class="post-add-icon">
-										<svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-										<span>324</span>
-									</a>
-
-									<a href="#" data-toggle="modal" data-target="#open-photo-popup-v1" class="  full-block"></a>
-								</div>
-
-								<div class="content">
-									<a href="#" class="title h5">Winter 2015 Portraits</a>
-									<span class="sub-title">Last Added: 1 year ago</span>
-
-									<div class="swiper-container" data-slide="fade">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide">
-												<ul class="friends-harmonic">
-													<li>
-														<a href="#">
-															<img src="img/friend-harmonic10.jpg" alt="friend">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/avatar30-sm.jpg" alt="author">
-														</a>
-													</li>
-													<li>
-														<a href="#">
-															<img src="img/avatar29-sm.jpg" alt="user">
-														</a>
-													</li>
-												</ul>
-											</div>
-
-											<div class="swiper-slide">
-												<div class="friend-count" data-swiper-parallax="-500">
-													<a href="#" class="friend-count-item">
-														<div class="h6">24</div>
-														<div class="title">Photos</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">86</div>
-														<div class="title">Comments</div>
-													</a>
-													<a href="#" class="friend-count-item">
-														<div class="h6">16</div>
-														<div class="title">Share</div>
-													</a>
-												</div>
-											</div>
-										</div>
-
-										<!-- If we need pagination -->
-										<div class="swiper-pagination"></div>
-									</div>
-								</div>
-
-							</div>
-						</div> --}}
-
-					</div>
-
-				</div>
-			</div>
-
-		</div>
-	</div>
-</div>
 
 @endsection
