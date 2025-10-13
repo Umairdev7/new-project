@@ -5,7 +5,7 @@
 
     @forelse($friendRequests as $request)
         <div class="mb-4 p-4 border rounded flex justify-between items-center">
-            <span>{{ $request->sender->name }} sent you a friend request</span>
+            <span>{{ $request->sender->name }}sent you a friend request</span>
 
             <div class="space-x-2">
                 <form action="{{ route('friend-request.accept', $request->id) }}" method="POST" class="inline">
