@@ -34,6 +34,11 @@
     <link rel="stylesheet" href="dist/css/dropify.css">
     {{-- End Dropify  --}}
 
+    {{-- Dropzone --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+    {{-- End Dropzone --}}
+
 </head>
 <body class="page-has-left-panels page-has-right-panels">
 
@@ -327,6 +332,42 @@ $(document).ready(function () {
             });
         </script>
         {{-- End Dropify  --}}
+
+        {{-- Dropzone --}}
+        <script>
+Dropzone.options.postDropzone = {
+    autoProcessQueue: false,     // don't upload right away
+    paramName: "images",         // Laravel will see this as "images[]"
+    uploadMultiple: true,
+    parallelUploads: 5,
+    maxFilesize: 2,              // MB
+    acceptedFiles: 'image/*',
+    addRemoveLinks: true,
+    dictDefaultMessage: "Drop images here or click to upload 📸",
+
+    init: function () {
+        let myDropzone = this;
+        let submitButton = document.querySelector("#submit-all");
+
+        submitButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            myDropzone.processQueue();
+        });
+
+        // send text area value with each file
+        this.on("sending", function(file, xhr, formData) {
+            formData.append("body", document.querySelector("textarea[name=body]").value);
+        });
+
+        this.on("successmultiple", function(files, response) {
+            window.location.reload(); // refresh page to show new post, or redirect
+        });
+    }
+};
+</script>
+        {{-- End Dropzone --}}
+
 
 </body>
 </html>

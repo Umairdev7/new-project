@@ -8,6 +8,9 @@
 					<div class="top-header-thumb">
 						<img src="{{ asset('images/cover.jpg') }}" alt="nature">
 					</div>
+
+                    @if ($isFriend || auth()->id() === $user->id)
+
 					<div class="profile-section">
 						<div class="row">
 							<div class="col col-lg-5 col-md-5 col-sm-12 col-12">
@@ -26,7 +29,7 @@
 							<div class="col col-lg-5 ml-auto col-md-5 col-sm-12 col-12">
 								<ul class="profile-menu">
 									<li>
-										<a href="{{ route('photos') }}">Photos</a>
+										<a href="{{ route('users.photos', $user) }}">Photos</a>
 									</li>
 									<li>
 										<a href="09-ProfilePage-Videos.html">Videos</a>
@@ -60,6 +63,50 @@
 
 
 					</div>
+
+                    @else
+					<div class="profile-section">
+						<div class="row">
+							<div class="col col-lg-5 col-md-5 col-sm-12 col-12">
+								<ul class="profile-menu">
+									<li>
+										<a href="{{ route('home') }}" class="active"></a>
+									</li>
+									<li>
+										<a href="{{ route('about') }}"></a>
+									</li>
+									<li>
+										<a href="{{ route('users.friends', $user) }}"></a>
+									</li>
+								</ul>
+							</div>
+							<div class="col col-lg-5 ml-auto col-md-5 col-sm-12 col-12">
+								<ul class="profile-menu">
+									<li>
+										<a href="{{ route('users.photos', $user) }}"></a>
+									</li>
+									<li>
+										<a href="09-ProfilePage-Videos.html"></a>
+									</li>
+									<li>
+										<div class="more">
+											<svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+											<ul class="more-dropdown more-with-triangle">
+												<li>
+													<a href="#">Report Profile</a>
+												</li>
+												<li>
+													<a href="#">Block Profile</a>
+												</li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+                    @endif
+
 					<div class="top-header-author">
 						<a href="{{ route('home') }}" class="author-thumb">
 							<img src="{{ $user->avatar }}" alt="author"

@@ -56,6 +56,7 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/users/{user}', [ProfileController::class, 'show'])->name('show');
 Route::get('/users/{user}/friends', [ProfileController::class, 'friends'])->name('users.friends');
+Route::get('/users/{user}/photos', [ProfileController::class, 'photos'])->name('users.photos');
 // Route::get('/users', [ProfileController::class, 'show'])->name('show');
 // Route::get('/users/{id}', [ProfileController::class, 'show'])->name('show');
 

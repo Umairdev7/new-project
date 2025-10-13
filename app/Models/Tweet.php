@@ -29,5 +29,9 @@ class Tweet extends Model
                     ->withTimestamps();
     }
 
+    public function images(){
+        return $this->hasMany(PostImage::class , 'post_id');
+    }
+
 
 }

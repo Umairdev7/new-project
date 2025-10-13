@@ -55,28 +55,56 @@ class TweetsController extends Controller
     //     return redirect('/tweets');
     // }
 
-    public function store(Request $request)
-    {
-        // Validate
-        $validated = $request->validate([
-            'body' => 'required|string|max:5000',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+    // public function store(Request $request)
+    // {
+    //     // Validate
+    //     $validated = $request->validate([
+    //         'body' => 'required|string|max:5000',
+    //         'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+    //     ]);
+
+    //     // Handle image upload
+    //     $imagePath = null;
+    //     if ($request->hasFile('image')) {
+    //         $imagePath = $request->file('image')->store('posts', 'public');
+    //     }
+
+    //     // Save post
+    //     Tweet::create([
+    //         'user_id'    => auth()->id(),
+    //         'body'       => $validated['body'],
+    //         'image_path' => $imagePath,
+    //     ]);
+
+    //     return redirect()->back()->with('success', 'Post created successfully!');
+    // }
+
+    public function store(Request $request){
+        $request->validate([
+            'body' => 'required|string|max:1000',
+            'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Handle image upload
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('posts', 'public');
+        // $post = \App\Models\Tweet::create([
+        $tweet = Tweet::create([
+            'body' => $request->body,
+            'user_id' => auth()->id(),
+        ]);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $path = $file->store('uploads/posts', 'public');
+
+                $tweet->images()->create([
+                    'path' => $path
+                ]);
+            }
         }
 
-        // Save post
-        Tweet::create([
-            'user_id'    => auth()->id(),
-            'body'       => $validated['body'],
-            'image_path' => $imagePath,
+        return response()->json([
+            'success' => true,
+            'post_id' => $tweet->id
         ]);
-
-        return redirect()->back()->with('success', 'Post created successfully!');
     }
 
 

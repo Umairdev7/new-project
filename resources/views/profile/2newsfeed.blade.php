@@ -44,31 +44,75 @@
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
+							{{-- <form>
+								<div class="author-thumb">
+									<img src="img/author-page.jpg" alt="author">
+								</div>
+								<div class="form-group with-icon label-floating is-empty">
+									<label class="control-label">Share what you are thinking here...</label>
+									<textarea class="form-control" placeholder=""></textarea>
+								</div>
+								<div class="add-options-message">
+									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD PHOTOS">
+										<svg class="olymp-camera-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use></svg>
+									</a>
+									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="TAG YOUR FRIENDS">
+										<svg class="olymp-computer-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
+									</a>
 
-    <form action="{{ route('posts.store') }}"
-      method="POST"
-      enctype="multipart/form-data"
-      class="dropzone"
-      id="postDropzone">
+									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD LOCATION">
+										<svg class="olymp-small-pin-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-small-pin-icon"></use></svg>
+									</a>
+
+									<button class="btn btn-primary btn-md-2">Post Status</button>
+									<button   class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
+
+								</div>
+
+							</form> --}}
+
+<form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+
     @csrf
-
     <div class="author-thumb">
         <img src="{{ auth()->user()->avatar }}" alt="author">
     </div>
-
     <div class="form-group with-icon label-floating is-empty">
         <label class="control-label">Share what you are thinking here...</label>
-        <textarea class="form-control" name="body"></textarea>
+        <textarea class="form-control" name="body" placeholder=""></textarea>
+    </div>
+    <div class="add-options-message">
+        {{-- <label class="options-message" data-toggle="tooltip" data-placement="top" title="ADD PHOTOS">
+            <svg class="olymp-camera-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use></svg>
+            <input type="file" name="image" style="display:none;">
+        </label> --}}
+
+        <input type="file" name="image" class="dropify" data-height="70">
+
+
+        <!-- Camera icon to trigger the modal -->
+        {{-- <a href="#" class="options-message" data-toggle="tooltip" data-placement="top" data-original-title="ADD PHOTOS" id="header-photo-trigger">
+            <svg class="olymp-camera-icon" data-toggle="modal" data-target="#update-header-photo">
+                <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+            </svg>
+            <input type="file" name="image" style="display:none;">
+
+        </a> --}}
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+<!-- Your existing modals remain the same -->
+
+        <button class="btn btn-primary btn-md-2">Post Status</button>
+        <button type="button" class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
     </div>
 
-    <!-- Dropzone will render the file upload area here -->
-    <div class="dz-message" data-dz-message>
-        <span>Drop images here or click to upload 📸</span>
-    </div>
 
-    <button type="submit" id="submit-all" class="btn btn-primary btn-md-2 mt-3">Post Status</button>
-    {{-- <button type="button" class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button> --}}
 </form>
+
 
 						</div>
 

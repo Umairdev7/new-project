@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Tweet;
 use Illuminate\Http\Request;
 use App\Models\FriendRequest;
 
@@ -85,6 +86,13 @@ public function show(User $user)
         // $friends = $user->friends()->paginate(12);
         $friends = $user->friends();
         return view('users.friends', compact('user', 'friends'));
+    }
+
+    public function photos(User $user){
+        $userImages = Tweet::where('user_id', $user->id)
+            ->whereNotNull('image_path')
+            ->get();
+        return view('partial.user.photos', compact('user', 'userImages'));
     }
 
 

@@ -40,6 +40,7 @@
 
         </div>
 
+        @if ($isFriend || auth()->id() === $user->id)
 
             <div class="profile-action-buttons mt-2">
 
@@ -70,5 +71,8 @@
 
             <!-- Friend Request Button -->
         </div>
+
+        @endif
+
         @endif
         </div>

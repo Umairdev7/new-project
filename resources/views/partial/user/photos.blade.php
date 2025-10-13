@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-@include('partial.profile_header')
+@include('partial.user.user_header')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +84,7 @@
   <!-- Content -->
   <div class="container">
     {{-- <h1>Uploaded Photos</h1> --}}
-    <div class="h6 title">{{ auth()->user()->name }}’s Photo Gallery</div>
+    <div class="h6 title">{{ $user->name }}’s Photo Gallery</div>
 
     <hr>
     <div class="row">

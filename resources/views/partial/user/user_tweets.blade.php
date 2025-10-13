@@ -43,11 +43,28 @@
 							<p>
                                 {!! $tweet->body !!}
 							</p>
-                        @if($tweet->image_path)
+                        {{-- @if($tweet->image_path)
                             <div class="post-thumb">
                                 <img src="{{ asset('storage/' . $tweet->image_path) }}" alt="Post image" width="300">
 							</div>
-                        @endif
+                        @endif --}}
+
+                            @if($tweet->images->count() === 1)
+                            <!-- Just 1 image -->
+                                <div class="post-thumb">
+                                    <img src="{{ asset('storage/' . $tweet->images->first()->path) }}" alt="Post image" width="400">
+                                </div>
+                            @elseif($tweet->images->count() > 1)
+                            <!-- Multiple images = gallery -->
+                                <div class="post-gallery d-flex flex-wrap gap-2">
+                                    @foreach($tweet->images as $img)
+                                        <div class="gallery-item" style="flex: 1 1 calc(50% - 10px);">
+                                            <img src="{{ asset('storage/' . $img->path) }}" alt="Post image" class="img-fluid rounded">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+
 							<div class="post-additional-info inline-items">
                     @auth
                         @if(auth()->user()->bookmarkedTweets->contains($tweet->id))

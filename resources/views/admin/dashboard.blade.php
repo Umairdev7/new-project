@@ -572,7 +572,7 @@
 
         <!-- cards row 4 -->
 
-        <div class="flex flex-wrap my-6 -mx-3">
+        {{-- <div class="flex flex-wrap my-6 -mx-3">
           <!-- card 1 -->
 
           <div
@@ -1389,6 +1389,6 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
 
 @endsection
