@@ -22,7 +22,7 @@
     @empty
         <p>No pending friend requests.</p>
     @endforelse
-@endsection --}}
+@endsection --}} 
 
 {{-- 2 --}}
 
